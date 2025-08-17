@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sale_order_inherit_merge_so_line" model="ir.ui.view">
+        <field name="name">sale.order.inherit.merge.so.line</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_quotation_send']" position="before">
+                <field name="is_merge_duplicate_so_line" invisible="1"/>
+                <button name="action_merge_so_line" invisible="locked or state not in ('draft', 'sent', 'sale') or is_merge_duplicate_so_line" type="object" string="Merge Duplicate Lines" class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
