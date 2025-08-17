@@ -30,7 +30,7 @@ Developed by Algorid Limited
     'license': 'OPL-1',
     'depends': ['base', 'contacts', 'hr'],
     'data': [
-        # 'views/sale_order_views.xml',
+        'data/sequence.xml',
         # 'views/res_config_setting.xml',
     ],
     'demo': [],
