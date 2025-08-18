@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="algorid_base_view_partner_form_inherit" model="ir.ui.view">
+        <field name="name">algorid.base.view.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='company_type']" position="after">
+                <field name="contact_type" widget="radio" options="{'horizontal': true}"/>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="student_code" invisible="contact_type == 'guardian'"/>
+                <field name="guardian_id" invisible="contact_type == 'guardian'"/>
+            </xpath>
+            <xpath expr="//field[@name='mobile']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='function']" position="after">
+                <field name="nid_number"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

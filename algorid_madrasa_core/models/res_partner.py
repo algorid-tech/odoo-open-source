@@ -15,13 +15,14 @@ class ResPartner(models.Model):
     """Inherits from res.partner to add student and guardian management features."""
     _inherit = 'res.partner'
 
-    student_code = fields.Char(string='Student Code', copy=False, default=lambda self: _('New'),
+    student_code = fields.Char(string='Student Code', copy=False, default=lambda self: _('New'), readonly=True,
                                help='Unique code for the student, used for identification purposes.')
-    is_student = fields.Boolean(string='Is Student', default=False, help='Indicates if this partner is a student.')
+    is_student = fields.Boolean(string='Is Student', default=True, help='Indicates if this partner is a student.')
     contact_type = fields.Selection(string='Contact Type', selection=[('student', 'Student'), ('guardian', 'Guardian')],
-                                    compute='_compute_contact_type', inverse='_write_contact_type')
+                                    default='student', compute='_compute_contact_type', inverse='_write_contact_type')
     guardian_id = fields.Many2one('res.partner', string='Guardian', domain="[('is_student', '=', False)]",
                                   help='The guardian of the student. This field is only applicable if the partner is a student.')
+    nid_number = fields.Char(string='NID Number', help='National ID number of the student or guardian.')
 
     @api.depends('is_student')
     def _compute_contact_type(self):

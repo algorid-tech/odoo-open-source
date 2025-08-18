@@ -31,7 +31,7 @@ Developed by Algorid Limited
     'depends': ['base', 'contacts', 'hr'],
     'data': [
         'data/sequence.xml',
-        # 'views/res_config_setting.xml',
+        'views/res_partner_views.xml',
     ],
     'demo': [],
     # 'images': [
