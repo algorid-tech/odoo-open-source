@@ -7,5 +7,4 @@
 #                                                               #
 #################################################################
 
-from . import models
-from . import wizards
+from . import product_packaging_import_wizard

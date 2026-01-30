@@ -64,7 +64,7 @@
     },
     'data': [
         'security/ir.model.access.csv',
-        'views/product_packaging_import_wizard_views.xml',
+        'wizards/product_packaging_import_wizard_views.xml',
         'views/product_template_views.xml',
         'views/product_product_views.xml',
     ],

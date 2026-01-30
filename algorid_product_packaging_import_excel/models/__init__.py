@@ -7,6 +7,5 @@
 #                                                               #
 #################################################################
 
-from . import product_packaging_import_wizard
 from . import product_template
 from . import product_product
