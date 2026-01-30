@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add scan status filters to stock picking search view -->
+    <record id="view_picking_internal_search_scan_filter" model="ir.ui.view">
+        <field name="name">stock.picking.search.scan.filter</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <!-- Add filters after existing filters -->
+            <xpath expr="//filter[@name='available']" position="after">
+                <field name="scan_status"/>
+                <separator/>
+                <filter string="Not Scanned"
+                        name="filter_not_scanned"
+                        domain="[('scan_status', '=', 'not')]"/>
+
+                <filter string="Partially Scanned"
+                        name="filter_partially_scanned"
+                        domain="[('scan_status', '=', 'partial')]"/>
+
+                <filter string="Fully Scanned"
+                        name="filter_fully_scanned"
+                        domain="[('scan_status', '=', 'full')]"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

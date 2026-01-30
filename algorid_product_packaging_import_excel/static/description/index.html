@@ -1,0 +1,147 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#875A7B;">Product Packaging Import from Excel</h2>
+            <h3 class="oe_slogan">Import packaging data efficiently from Excel files</h3>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2>Features</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="fa fa-3x fa-file-excel-o text-primary pull-left"/>
+                    <div class="ml-4">
+                        <h3>Excel Import</h3>
+                        <p>Upload .xls or .xlsx files with packaging data. Support for both old and new Excel formats.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="fa fa-3x fa-download text-success pull-left"/>
+                    <div class="ml-4">
+                        <h3>Template Download</h3>
+                        <p>Generate pre-formatted Excel templates with instructions and example data.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="fa fa-3x fa-filter text-info pull-left"/>
+                    <div class="ml-4">
+                        <h3>Product Filtering</h3>
+                        <p>Import packaging for specific products or entire product templates.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="fa fa-3x fa-check-circle text-warning pull-left"/>
+                    <div class="ml-4">
+                        <h3>Smart Validation</h3>
+                        <p>Detailed error reporting with row numbers and helpful error messages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2>How It Works</h2>
+            <h3>Method 1: From Configuration Menu</h3>
+            <ol>
+                <li>Navigate to Inventory → Configuration → Import Packaging</li>
+                <li>Download the Excel template</li>
+                <li>Fill in your packaging data</li>
+                <li>Upload and import</li>
+            </ol>
+            
+            <h3>Method 2: From Product Form</h3>
+            <ol>
+                <li>Open any product template or variant</li>
+                <li>Click the "Import Packaging" smart button</li>
+                <li>Download template (pre-filled with product info)</li>
+                <li>Fill in packaging data</li>
+                <li>Upload and import (automatically filtered)</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2>Supported Fields</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Product Code/ID</td>
+                        <td><span class="badge badge-danger">Required</span></td>
+                        <td>Product default code or database ID in brackets [123]</td>
+                    </tr>
+                    <tr>
+                        <td>Packaging Name</td>
+                        <td><span class="badge badge-danger">Required</span></td>
+                        <td>Name for the packaging</td>
+                    </tr>
+                    <tr>
+                        <td>Contained Quantity</td>
+                        <td><span class="badge badge-danger">Required</span></td>
+                        <td>Number of products in this packaging</td>
+                    </tr>
+                    <tr>
+                        <td>Sequence</td>
+                        <td><span class="badge badge-secondary">Optional</span></td>
+                        <td>Order number (lower = default)</td>
+                    </tr>
+                    <tr>
+                        <td>Barcode</td>
+                        <td><span class="badge badge-secondary">Optional</span></td>
+                        <td>Barcode for scanning</td>
+                    </tr>
+                    <tr>
+                        <td>Package Type</td>
+                        <td><span class="badge badge-secondary">Optional</span></td>
+                        <td>Package type name (must exist)</td>
+                    </tr>
+                    <tr>
+                        <td>Sales</td>
+                        <td><span class="badge badge-secondary">Optional</span></td>
+                        <td>Available for sales (TRUE/FALSE)</td>
+                    </tr>
+                    <tr>
+                        <td>Purchase</td>
+                        <td><span class="badge badge-secondary">Optional</span></td>
+                        <td>Available for purchase (TRUE/FALSE)</td>
+                    </tr>
+                    <tr>
+                        <td>Routes</td>
+                        <td><span class="badge badge-secondary">Optional</span></td>
+                        <td>Comma-separated route names</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2>Installation</h2>
+            <p>Install the required Python dependencies:</p>
+            <pre>pip install openpyxl xlrd</pre>
+            <p>Then install the module from Odoo Apps menu.</p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard Form View -->
+    <record id="view_product_packaging_import_wizard_form" model="ir.ui.view">
+        <field name="name">product.packaging.import.wizard.form</field>
+        <field name="model">product.packaging.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Product Packaging from Excel">
+                <sheet>
+                    <div class="alert alert-info" role="alert">
+                        <p><strong>Import product packaging from an Excel file</strong></p>
+                        <p>Download the template below, fill it with your packaging data, and upload it here.</p>
+                    </div>
+                    
+                    <!-- Filter Information Alert -->
+                    <div class="alert alert-warning" role="alert" invisible="not show_filter_info">
+                        <p><strong><i class="fa fa-filter"/> Active Filter</strong></p>
+                        <p><field name="filter_info_text" readonly="1" class="o_field_char"/></p>
+                        <p>Only packaging matching this filter will be imported from the Excel file.</p>
+                    </div>
+                    
+                    <!-- Hidden fields for filtering -->
+                    <field name="filter_product_id" invisible="1"/>
+                    <field name="filter_product_tmpl_id" invisible="1"/>
+                    <field name="show_filter_info" invisible="1"/>
+                    
+                    <group>
+                        <group string="File">
+                            <field name="file" filename="filename"/>
+                            <field name="filename" invisible="1"/>
+                        </group>
+                        <group string="Options">
+                            <field name="import_type"/>
+                            <field name="replace_existing"
+                                   invisible="import_type != 'create'"/>
+                            <field name="company_id" 
+                                   groups="base.group_multi_company"
+                                   options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <button name="action_download_template" 
+                                string="Download Excel Template" 
+                                type="object" 
+                                class="btn-link"
+                                icon="fa-download"/>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Instructions">
+                            <group>
+                                <group string="Required Fields">
+                                    <div>
+                                        <ul>
+                                            <li><strong>Product Code/ID:</strong> Product default code or database ID in brackets (e.g., [123])</li>
+                                            <li><strong>Packaging Name:</strong> Name for the packaging</li>
+                                            <li><strong>Contained Quantity:</strong> Number of products in this packaging</li>
+                                        </ul>
+                                    </div>
+                                </group>
+                                <group string="Optional Fields">
+                                    <div>
+                                        <ul>
+                                            <li><strong>Sequence:</strong> Order number (lower = default)</li>
+                                            <li><strong>Barcode:</strong> Barcode for scanning</li>
+                                            <li><strong>Package Type:</strong> Package type name (must exist)</li>
+                                            <li><strong>Sales:</strong> Available for sales (TRUE/FALSE)</li>
+                                            <li><strong>Purchase:</strong> Available for purchase (TRUE/FALSE)</li>
+                                            <li><strong>Routes:</strong> Comma-separated route names</li>
+                                        </ul>
+                                    </div>
+                                </group>
+                            </group>
+                            <group string="Import Types">
+                                <div>
+                                    <ul>
+                                        <li><strong>Create New Packaging:</strong> Only creates new packaging records</li>
+                                        <li><strong>Update Existing Packaging:</strong> Only updates existing packaging (matches by product and name)</li>
+                                        <li><strong>Create or Update:</strong> Creates new or updates existing packaging</li>
+                                    </ul>
+                                </div>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_import_packaging" 
+                            string="Import" 
+                            type="object" 
+                            class="btn-primary"/>
+                    <button string="Cancel" 
+                            class="btn-secondary" 
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wizard Action -->
+    <record id="action_product_packaging_import_wizard" model="ir.actions.act_window">
+        <field name="name">Import Product Packaging</field>
+        <field name="res_model">product.packaging.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_product_packaging_import"
+              name="Import Packaging"
+              parent="stock.menu_stock_config_settings"
+              action="action_product_packaging_import_wizard"
+              sequence="50"
+              groups="product.group_stock_packaging"/>
+</odoo>
