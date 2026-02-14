@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_period_admin,algorid.period.admin,model_algorid_period,algorid_madrashah_base.group_madrashah_admin,1,1,1,1
+access_period_teacher,algorid.period.teacher,model_algorid_period,algorid_madrashah_base.group_madrashah_teacher,1,0,0,0
+access_period_user,algorid.period.user,model_algorid_period,algorid_madrashah_base.group_madrashah_user,1,0,0,0
+access_timetable_admin,algorid.timetable.admin,model_algorid_timetable,algorid_madrashah_base.group_madrashah_admin,1,1,1,1
+access_timetable_teacher,algorid.timetable.teacher,model_algorid_timetable,algorid_madrashah_base.group_madrashah_teacher,1,0,0,0
+access_timetable_user,algorid.timetable.user,model_algorid_timetable,algorid_madrashah_base.group_madrashah_user,1,0,0,0
+access_timetable_line_admin,algorid.timetable.line.admin,model_algorid_timetable_line,algorid_madrashah_base.group_madrashah_admin,1,1,1,1
+access_timetable_line_teacher,algorid.timetable.line.teacher,model_algorid_timetable_line,algorid_madrashah_base.group_madrashah_teacher,1,0,0,0
+access_timetable_line_user,algorid.timetable.line.user,model_algorid_timetable_line,algorid_madrashah_base.group_madrashah_user,1,0,0,0

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="period_1" model="algorid.period">
+            <field name="name">Period 1</field>
+            <field name="name_bn">১ম পিরিয়ড</field>
+            <field name="sequence">1</field>
+            <field name="start_time">8.0</field>
+            <field name="end_time">8.75</field>
+            <field name="period_type">class</field>
+        </record>
+
+        <record id="period_2" model="algorid.period">
+            <field name="name">Period 2</field>
+            <field name="name_bn">২য় পিরিয়ড</field>
+            <field name="sequence">2</field>
+            <field name="start_time">8.75</field>
+            <field name="end_time">9.5</field>
+            <field name="period_type">class</field>
+        </record>
+
+        <record id="period_3" model="algorid.period">
+            <field name="name">Period 3</field>
+            <field name="name_bn">৩য় পিরিয়ড</field>
+            <field name="sequence">3</field>
+            <field name="start_time">9.5</field>
+            <field name="end_time">10.25</field>
+            <field name="period_type">class</field>
+        </record>
+
+        <record id="period_break_1" model="algorid.period">
+            <field name="name">Short Break</field>
+            <field name="name_bn">ছোট বিরতি</field>
+            <field name="sequence">4</field>
+            <field name="start_time">10.25</field>
+            <field name="end_time">10.5</field>
+            <field name="period_type">break</field>
+        </record>
+
+        <record id="period_4" model="algorid.period">
+            <field name="name">Period 4</field>
+            <field name="name_bn">৪র্থ পিরিয়ড</field>
+            <field name="sequence">5</field>
+            <field name="start_time">10.5</field>
+            <field name="end_time">11.25</field>
+            <field name="period_type">class</field>
+        </record>
+
+        <record id="period_5" model="algorid.period">
+            <field name="name">Period 5</field>
+            <field name="name_bn">৫ম পিরিয়ড</field>
+            <field name="sequence">6</field>
+            <field name="start_time">11.25</field>
+            <field name="end_time">12.0</field>
+            <field name="period_type">class</field>
+        </record>
+
+        <record id="period_prayer" model="algorid.period">
+            <field name="name">Zuhr Prayer</field>
+            <field name="name_bn">যোহরের নামাজ</field>
+            <field name="sequence">7</field>
+            <field name="start_time">12.0</field>
+            <field name="end_time">12.5</field>
+            <field name="period_type">prayer</field>
+        </record>
+
+        <record id="period_lunch" model="algorid.period">
+            <field name="name">Lunch Break</field>
+            <field name="name_bn">দুপুরের খাবার</field>
+            <field name="sequence">8</field>
+            <field name="start_time">12.5</field>
+            <field name="end_time">13.25</field>
+            <field name="period_type">lunch</field>
+        </record>
+
+        <record id="period_6" model="algorid.period">
+            <field name="name">Period 6</field>
+            <field name="name_bn">৬ষ্ঠ পিরিয়ড</field>
+            <field name="sequence">9</field>
+            <field name="start_time">13.25</field>
+            <field name="end_time">14.0</field>
+            <field name="period_type">class</field>
+        </record>
+
+        <record id="period_7" model="algorid.period">
+            <field name="name">Period 7</field>
+            <field name="name_bn">৭ম পিরিয়ড</field>
+            <field name="sequence">10</field>
+            <field name="start_time">14.0</field>
+            <field name="end_time">14.75</field>
+            <field name="period_type">class</field>
+        </record>
+    </data>
+</odoo>
+

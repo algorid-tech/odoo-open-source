@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Fee Discount Tree View -->
+    <record id="view_fee_discount_tree" model="ir.ui.view">
+        <field name="name">algorid.fee.discount.tree</field>
+        <field name="model">algorid.fee.discount</field>
+        <field name="arch" type="xml">
+            <list string="Fee Discounts">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="discount_type"/>
+                <field name="value"/>
+                <field name="applies_to"/>
+                <field name="eligibility"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Fee Discount Form View -->
+    <record id="view_fee_discount_form" model="ir.ui.view">
+        <field name="name">algorid.fee.discount.form</field>
+        <field name="model">algorid.fee.discount</field>
+        <field name="arch" type="xml">
+            <form string="Fee Discount">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="name_bn"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="discount_type" widget="radio"/>
+                            <field name="value"/>
+                            <field name="max_discount"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="applies_to" widget="radio"/>
+                            <field name="fee_type_ids" widget="many2many_tags" invisible="applies_to != 'specific'"/>
+                        </group>
+                        <group>
+                            <field name="eligibility"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Fee Discount Action -->
+    <record id="action_fee_discount" model="ir.actions.act_window">
+        <field name="name">Fee Discounts</field>
+        <field name="res_model">algorid.fee.discount</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create fee discounts
+            </p>
+            <p>
+                Define discounts for scholarships, siblings, etc.
+            </p>
+        </field>
+    </record>
+</odoo>
+

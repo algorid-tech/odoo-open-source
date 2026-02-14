@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Madrashah Management System - Base</title>
+    <style>
+        :root {
+            --primary-color: #875A7B;
+            --secondary-color: #0C4B33;
+            --accent-color: #00A09D;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Banner */
+        .oe_banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .oe_banner h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .oe_banner h2 {
+            font-size: 1.3em;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Section Styles */
+        .oe_section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--light-bg);
+            border-radius: 8px;
+        }
+
+        .oe_section h3 {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* Feature List */
+        .oe_feature_list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .oe_feature_item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .oe_feature_item h4 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .oe_feature_item h4 i {
+            color: var(--accent-color);
+        }
+
+        /* Info Box */
+        .oe_info_box {
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f7f4 100%);
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Screenshots */
+        .oe_screenshot {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .oe_screenshot img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Company Info */
+        .oe_company {
+            text-align: center;
+            padding: 40px;
+            background: var(--light-bg);
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .oe_company img {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .oe_company a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .oe_company a:hover {
+            text-decoration: underline;
+        }
+
+        /* Badge */
+        .oe_badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 5px;
+        }
+
+        /* Table */
+        .oe_table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .oe_table th, .oe_table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .oe_table th {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .oe_table tr:hover {
+            background: var(--light-bg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Banner -->
+        <div class="oe_banner">
+            <h1>🕌 Madrashah Management System</h1>
+            <h2>Complete Islamic Educational Institution Management Solution</h2>
+            <div style="margin-top: 20px;">
+                <span class="oe_badge">Odoo 19 Community</span>
+                <span class="oe_badge">Bilingual: English & বাংলা</span>
+                <span class="oe_badge">Open Source</span>
+            </div>
+        </div>
+
+        <!-- Overview -->
+        <div class="oe_section">
+            <h3>📋 Overview</h3>
+            <p>
+                <strong>Madrashah Management System - Base Module</strong> is the core foundation for managing
+                Islamic educational institutions (Madrasah/Madrashah). This module provides essential
+                configurations including academic years, classes, sections, and subjects management.
+            </p>
+            <div class="oe_info_box">
+                <strong>🌐 Bilingual Support:</strong> Full support for both English and Bangla (বাংলা) languages,
+                making it perfect for institutions in Bangladesh and Bengali-speaking regions worldwide.
+            </div>
+        </div>
+
+        <!-- Key Features -->
+        <div class="oe_section">
+            <h3>✨ Key Features</h3>
+            <ul class="oe_feature_list">
+                <li class="oe_feature_item">
+                    <h4><i>📅</i> Academic Year Management</h4>
+                    <p>Define academic years with start/end dates. Set current academic year for the institution.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4><i>🏫</i> Class Management</h4>
+                    <p>Create and manage classes with capacity limits, assigned teachers, and linked subjects.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4><i>📚</i> Section Management</h4>
+                    <p>Organize classes into sections (A, B, C) with individual capacity and room assignments.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4><i>📖</i> Subject Management</h4>
+                    <p>Define subjects with codes, credit hours, and subject types (compulsory/optional).</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4><i>🔐</i> Security Groups</h4>
+                    <p>Pre-configured security roles: Admin, Teacher, Accountant, Parent, Student.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4><i>⚙️</i> System Configuration</h4>
+                    <p>Centralized settings for institution name, fee policies, and academic preferences.</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Module Dependencies -->
+        <div class="oe_section">
+            <h3>🔗 Related Modules</h3>
+            <table class="oe_table">
+                <tr>
+                    <th>Module</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><strong>Madrashah - Student Management</strong></td>
+                    <td>Complete student profile, guardian, and document management</td>
+                </tr>
+                <tr>
+                    <td><strong>Madrashah - HR & Teachers</strong></td>
+                    <td>Teacher profiles, qualifications, and scheduling</td>
+                </tr>
+                <tr>
+                    <td><strong>Madrashah - Attendance</strong></td>
+                    <td>Daily attendance tracking for students and teachers</td>
+                </tr>
+                <tr>
+                    <td><strong>Madrashah - Fees Management</strong></td>
+                    <td>Fee structures, invoicing, and payment tracking</td>
+                </tr>
+                <tr>
+                    <td><strong>Madrashah - Exams & Results</strong></td>
+                    <td>Exam scheduling, marks entry, and report cards</td>
+                </tr>
+                <tr>
+                    <td><strong>Madrashah - Timetable</strong></td>
+                    <td>Weekly timetable management with conflict detection</td>
+                </tr>
+                <tr>
+                    <td><strong>Madrashah - Portal</strong></td>
+                    <td>Parent and student portal access</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Technical Info -->
+        <div class="oe_section">
+            <h3>🔧 Technical Information</h3>
+            <table class="oe_table">
+                <tr>
+                    <td><strong>Version</strong></td>
+                    <td>19.0.1.0.0</td>
+                </tr>
+                <tr>
+                    <td><strong>License</strong></td>
+                    <td>LGPL-3</td>
+                </tr>
+                <tr>
+                    <td><strong>Dependencies</strong></td>
+                    <td>base, mail, hr</td>
+                </tr>
+                <tr>
+                    <td><strong>Odoo Version</strong></td>
+                    <td>19.0 Community Edition</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Company Info -->
+        <div class="oe_company">
+            <h3>Developed by</h3>
+            <h2><strong>Algorid Limited</strong></h2>
+            <p>
+                🌐 <a href="https://www.algorid.com" target="_blank">www.algorid.com</a><br>
+                📧 <a href="mailto:contact@algorid.com">contact@algorid.com</a>
+            </p>
+            <p style="margin-top: 20px; color: #666;">
+                © 2025 - Today Algorid Limited. All Rights Reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+

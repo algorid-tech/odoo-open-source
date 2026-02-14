@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Attendance Menu -->
+    <menuitem id="menu_madrashah_attendance"
+              name="Attendance"
+              parent="algorid_madrashah_base.menu_madrashah_root"
+              sequence="30"/>
+
+    <menuitem id="menu_student_attendance"
+              name="Student Attendance"
+              parent="menu_madrashah_attendance"
+              action="action_student_attendance"
+              sequence="10"/>
+
+    <menuitem id="menu_attendance_sheet"
+              name="Attendance Sheets"
+              parent="menu_madrashah_attendance"
+              action="action_attendance_sheet"
+              sequence="20"/>
+
+    <menuitem id="menu_teacher_attendance"
+              name="Teacher Attendance"
+              parent="menu_madrashah_attendance"
+              action="action_teacher_attendance"
+              sequence="30"/>
+
+    <menuitem id="menu_attendance_report"
+              name="Attendance Report"
+              parent="menu_madrashah_attendance"
+              action="action_attendance_report_wizard"
+              sequence="40"/>
+</odoo>
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Monthly Attendance Report Template -->
+    <template id="report_monthly_attendance">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2 class="text-center">Monthly Attendance Report</h2>
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr class="bg-primary text-white">
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Class</th>
+                                <th>Section</th>
+                                <th>Present</th>
+                                <th>Absent</th>
+                                <th>Late</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="doc">
+                                <tr>
+                                    <td><t t-esc="doc.student_id.student_id"/></td>
+                                    <td><t t-esc="doc.student_id.name"/></td>
+                                    <td><t t-esc="doc.class_id.name"/></td>
+                                    <td><t t-esc="doc.section_id.name or '-'"/></td>
+                                    <td><t t-esc="doc.status == 'present' and 1 or 0"/></td>
+                                    <td><t t-esc="doc.status == 'absent' and 1 or 0"/></td>
+                                    <td><t t-esc="doc.status == 'late' and 1 or 0"/></td>
+                                    <td>-</td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+

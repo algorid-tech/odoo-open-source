@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_teacher_schedule_admin,algorid.teacher.schedule.admin,model_algorid_teacher_schedule,algorid_madrashah_base.group_madrashah_admin,1,1,1,1
+access_teacher_schedule_teacher,algorid.teacher.schedule.teacher,model_algorid_teacher_schedule,algorid_madrashah_base.group_madrashah_teacher,1,1,0,0
+access_teacher_schedule_user,algorid.teacher.schedule.user,model_algorid_teacher_schedule,algorid_madrashah_base.group_madrashah_user,1,0,0,0

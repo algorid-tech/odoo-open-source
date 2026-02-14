@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="tag_scholarship" model="algorid.student.tag">
+            <field name="name">Scholarship</field>
+            <field name="name_bn">বৃত্তি</field>
+            <field name="color">10</field>
+            <field name="description">Students receiving scholarship</field>
+        </record>
+
+        <record id="tag_special_needs" model="algorid.student.tag">
+            <field name="name">Special Needs</field>
+            <field name="name_bn">বিশেষ চাহিদা</field>
+            <field name="color">1</field>
+            <field name="description">Students with special needs</field>
+        </record>
+
+        <record id="tag_orphan" model="algorid.student.tag">
+            <field name="name">Orphan</field>
+            <field name="name_bn">এতিম</field>
+            <field name="color">2</field>
+            <field name="description">Orphan students</field>
+        </record>
+
+        <record id="tag_hafiz" model="algorid.student.tag">
+            <field name="name">Hafiz</field>
+            <field name="name_bn">হাফিজ</field>
+            <field name="color">11</field>
+            <field name="description">Students who have memorized the Quran</field>
+        </record>
+
+        <record id="tag_boarding" model="algorid.student.tag">
+            <field name="name">Boarding</field>
+            <field name="name_bn">আবাসিক</field>
+            <field name="color">4</field>
+            <field name="description">Boarding students</field>
+        </record>
+
+        <record id="tag_day_scholar" model="algorid.student.tag">
+            <field name="name">Day Scholar</field>
+            <field name="name_bn">দিবা শাখা</field>
+            <field name="color">5</field>
+            <field name="description">Day scholar students</field>
+        </record>
+
+        <record id="tag_transport" model="algorid.student.tag">
+            <field name="name">Transport</field>
+            <field name="name_bn">পরিবহন</field>
+            <field name="color">6</field>
+            <field name="description">Students using transport service</field>
+        </record>
+    </data>
+</odoo>
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_teacher" model="ir.sequence">
+        <field name="name">Teacher Sequence</field>
+        <field name="code">algorid.teacher</field>
+        <field name="prefix">TCH/%(year)s/</field>
+        <field name="padding">4</field>
+    </record>
+</odoo>
+

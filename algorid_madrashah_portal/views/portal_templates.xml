@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Portal Home Extension -->
+    <template id="portal_my_home_madrashah" name="Portal My Home - Madrashah" inherit_id="portal.portal_my_home" priority="40">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <!-- Madrashah Section Header -->
+            <div class="o_portal_category">
+                <h4 class="o_page_header">Madrashah</h4>
+            </div>
+
+            <!-- Students link for guardians -->
+            <t t-if="guardian">
+                <a class="list-group-item list-group-item-action d-flex align-items-center justify-content-between" t-att-href="'/my/students'">
+                    <span><i class="fa fa-users fa-fw me-1"/> My Students</span>
+                    <span class="badge rounded-pill text-bg-secondary" t-out="len(guardian.student_ids) if guardian else 0"/>
+                </a>
+            </t>
+
+            <!-- Student profile link -->
+            <t t-if="student">
+                <a class="list-group-item list-group-item-action d-flex align-items-center justify-content-between" t-attf-href="/my/student/#{student.id}">
+                    <span><i class="fa fa-user fa-fw me-1"/> My Profile</span>
+                </a>
+            </t>
+
+            <!-- Attendance - Always show -->
+            <a class="list-group-item list-group-item-action d-flex align-items-center justify-content-between" href="/my/attendance">
+                <span><i class="fa fa-calendar-check-o fa-fw me-1"/> Attendance</span>
+                <span class="badge rounded-pill text-bg-secondary" t-out="attendance_count or 0"/>
+            </a>
+
+            <!-- Fees - Always show -->
+            <a class="list-group-item list-group-item-action d-flex align-items-center justify-content-between" href="/my/fees">
+                <span><i class="fa fa-money fa-fw me-1"/> Fees</span>
+                <span class="badge rounded-pill text-bg-secondary" t-out="fee_count or 0"/>
+            </a>
+
+            <!-- Results - Always show -->
+            <a class="list-group-item list-group-item-action d-flex align-items-center justify-content-between" href="/my/results">
+                <span><i class="fa fa-graduation-cap fa-fw me-1"/> Exam Results</span>
+                <span class="badge rounded-pill text-bg-secondary" t-out="result_count or 0"/>
+            </a>
+
+            <!-- Timetable - Always show -->
+            <a class="list-group-item list-group-item-action d-flex align-items-center justify-content-between" href="/my/timetable">
+                <span><i class="fa fa-clock-o fa-fw me-1"/> Timetable</span>
+            </a>
+        </xpath>
+    </template>
+
+    <!-- My Students Page -->
+    <template id="portal_my_students" name="My Students">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Students</t>
+            </t>
+            <div class="card">
+                <div class="card-body">
+                    <t t-if="students">
+                        <div class="row">
+                            <t t-foreach="students" t-as="student">
+                                <div class="col-md-4 mb-4">
+                                    <div class="card h-100">
+                                        <div class="card-body text-center">
+                                            <t t-if="student.image_128">
+                                                <img t-att-src="image_data_uri(student.image_128)" class="rounded-circle mb-3" style="width: 100px; height: 100px;"/>
+                                            </t>
+                                            <h5 class="card-title"><t t-esc="student.name"/></h5>
+                                            <p class="card-text">
+                                                <span class="badge badge-secondary"><t t-esc="student.student_id"/></span><br/>
+                                                <t t-esc="student.class_id.name"/> - <t t-esc="student.section_id.name or ''"/>
+                                            </p>
+                                            <a t-attf-href="/my/student/#{student.id}" class="btn btn-primary btn-sm">View Profile</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <p class="text-center">No students found.</p>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Student Profile Page -->
+    <template id="portal_student_profile" name="Student Profile">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Student Profile</t>
+            </t>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <t t-if="student.image_128">
+                                <img t-att-src="image_data_uri(student.image_128)" class="rounded-circle mb-3" style="width: 150px; height: 150px;"/>
+                            </t>
+                            <h4><t t-esc="student.name"/></h4>
+                            <p class="text-muted"><t t-esc="student.student_id"/></p>
+                        </div>
+                        <div class="col-md-9">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Class:</strong></td>
+                                    <td><t t-esc="student.class_id.name"/></td>
+                                    <td><strong>Section:</strong></td>
+                                    <td><t t-esc="student.section_id.name or '-'"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Roll No:</strong></td>
+                                    <td><t t-esc="student.roll_no"/></td>
+                                    <td><strong>Status:</strong></td>
+                                    <td><span class="badge badge-success" t-if="student.state == 'active'">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Date of Birth:</strong></td>
+                                    <td><t t-esc="student.date_of_birth"/></td>
+                                    <td><strong>Blood Group:</strong></td>
+                                    <td><t t-esc="student.blood_group or '-'"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Father's Name:</strong></td>
+                                    <td><t t-esc="student.father_name or '-'"/></td>
+                                    <td><strong>Mother's Name:</strong></td>
+                                    <td><t t-esc="student.mother_name or '-'"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Attendance List Page -->
+    <template id="portal_my_attendance" name="My Attendance">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Attendance Records</t>
+            </t>
+            <div class="card">
+                <div class="card-body">
+                    <t t-if="attendances">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Student</th>
+                                    <th>Class</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="attendances" t-as="att">
+                                    <tr>
+                                        <td><t t-esc="att.date"/></td>
+                                        <td><t t-esc="att.student_id.name"/></td>
+                                        <td><t t-esc="att.class_id.name"/></td>
+                                        <td>
+                                            <span t-attf-class="badge #{att.status == 'present' and 'badge-success' or att.status == 'absent' and 'badge-danger' or 'badge-warning'}">
+                                                <t t-esc="att.status.title()"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <t t-call="portal.pager"/>
+                    </t>
+                    <t t-else="">
+                        <p class="text-center">No attendance records found.</p>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Fees List Page -->
+    <template id="portal_my_fees" name="My Fees">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Fee Status</t>
+            </t>
+            <div class="alert alert-info" t-if="total_due > 0">
+                <strong>Total Due Amount:</strong> <t t-esc="'%.2f' % total_due"/>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <t t-if="fees">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Fee Type</th>
+                                    <th>Period</th>
+                                    <th>Amount</th>
+                                    <th>Due</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="fees" t-as="fee">
+                                    <tr t-attf-class="#{fee.state == 'pending' and fee.due_date and fee.due_date &lt; datetime.date.today() and 'table-danger' or ''}">
+                                        <td><t t-esc="fee.student_id.name"/></td>
+                                        <td><t t-esc="fee.fee_type_id.name"/></td>
+                                        <td><t t-esc="fee.period_month"/> <t t-esc="fee.period_year"/></td>
+                                        <td><t t-esc="'%.2f' % fee.total_amount"/></td>
+                                        <td><t t-esc="'%.2f' % fee.due_amount"/></td>
+                                        <td><t t-esc="fee.due_date"/></td>
+                                        <td>
+                                            <span t-attf-class="badge #{fee.state == 'paid' and 'badge-success' or fee.state == 'partial' and 'badge-warning' or 'badge-secondary'}">
+                                                <t t-esc="fee.state.title()"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <t t-call="portal.pager"/>
+                    </t>
+                    <t t-else="">
+                        <p class="text-center">No fee records found.</p>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Results List Page -->
+    <template id="portal_my_results" name="My Results">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Exam Results</t>
+            </t>
+            <div class="card">
+                <div class="card-body">
+                    <t t-if="results">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Exam</th>
+                                    <th>Student</th>
+                                    <th>Total Marks</th>
+                                    <th>Percentage</th>
+                                    <th>GPA</th>
+                                    <th>Grade</th>
+                                    <th>Result</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="results" t-as="result">
+                                    <tr>
+                                        <td><t t-esc="result.exam_id.name"/></td>
+                                        <td><t t-esc="result.student_id.name"/></td>
+                                        <td><t t-esc="result.total_marks"/> / <t t-esc="result.total_full_marks"/></td>
+                                        <td><t t-esc="'%.2f' % result.percentage"/>%</td>
+                                        <td><t t-esc="'%.2f' % result.gpa"/></td>
+                                        <td><t t-esc="result.grade"/></td>
+                                        <td>
+                                            <span t-attf-class="badge #{result.is_passed and 'badge-success' or 'badge-danger'}">
+                                                <t t-if="result.is_passed">Passed</t>
+                                                <t t-else="">Failed</t>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a t-attf-href="/my/result/#{result.id}" class="btn btn-sm btn-primary">View Details</a>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <t t-call="portal.pager"/>
+                    </t>
+                    <t t-else="">
+                        <p class="text-center">No results found.</p>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Result Detail Page -->
+    <template id="portal_result_detail" name="Result Detail">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Result Details</t>
+            </t>
+            <div class="card">
+                <div class="card-header">
+                    <h4><t t-esc="result.exam_id.name"/> - <t t-esc="result.student_id.name"/></h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <p><strong>Class:</strong> <t t-esc="result.class_id.name"/></p>
+                            <p><strong>Roll No:</strong> <t t-esc="result.roll_no"/></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>GPA:</strong> <t t-esc="'%.2f' % result.gpa"/></p>
+                            <p><strong>Grade:</strong> <t t-esc="result.grade"/></p>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Subject</th>
+                                <th>Full Marks</th>
+                                <th>Obtained</th>
+                                <th>Grade</th>
+                                <th>GP</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="result.line_ids" t-as="line">
+                                <tr t-attf-class="#{not line.is_passed and 'table-danger' or ''}">
+                                    <td><t t-esc="line.subject_id.name"/></td>
+                                    <td><t t-esc="line.full_marks"/></td>
+                                    <td><t t-esc="line.marks_obtained"/></td>
+                                    <td><t t-esc="line.grade"/></td>
+                                    <td><t t-esc="'%.2f' % line.grade_point"/></td>
+                                    <td>
+                                        <span t-if="line.is_passed" class="text-success">Pass</span>
+                                        <span t-else="" class="text-danger">Fail</span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfoot>
+                            <tr class="font-weight-bold">
+                                <td>Total</td>
+                                <td><t t-esc="result.total_full_marks"/></td>
+                                <td><t t-esc="result.total_marks"/></td>
+                                <td colspan="3">
+                                    <span t-attf-class="badge badge-lg #{result.is_passed and 'badge-success' or 'badge-danger'}">
+                                        <t t-if="result.is_passed">PASSED</t>
+                                        <t t-else="">FAILED</t>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Timetable Page -->
+    <template id="portal_my_timetable" name="My Timetable">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Class Timetable</t>
+            </t>
+            <div class="card">
+                <div class="card-header" t-if="student">
+                    <h5><t t-esc="student.class_id.name"/> <t t-if="student.section_id">- <t t-esc="student.section_id.name"/></t></h5>
+                </div>
+                <div class="card-body">
+                    <t t-if="timetable">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Period</th>
+                                        <th>Time</th>
+                                        <t t-foreach="days" t-as="day">
+                                            <th><t t-esc="day[1]"/></th>
+                                        </t>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="periods" t-as="period">
+                                        <tr>
+                                            <td class="font-weight-bold"><t t-esc="period.name"/></td>
+                                            <td>
+                                                <small>
+                                                    <t t-esc="'{:02d}:{:02d}'.format(int(period.start_time), int((period.start_time % 1) * 60))"/>
+                                                    -
+                                                    <t t-esc="'{:02d}:{:02d}'.format(int(period.end_time), int((period.end_time % 1) * 60))"/>
+                                                </small>
+                                            </td>
+                                            <t t-foreach="days" t-as="day">
+                                                <t t-set="slot" t-value="timetable.line_ids.filtered(lambda l: l.day_of_week == day[0] and l.period_id.id == period.id)"/>
+                                                <td>
+                                                    <t t-if="slot">
+                                                        <strong><t t-esc="slot.subject_id.name"/></strong><br/>
+                                                        <small class="text-muted"><t t-esc="slot.teacher_id.name or ''"/></small>
+                                                    </t>
+                                                    <t t-else="">-</t>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <p class="text-center">No timetable available.</p>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
+

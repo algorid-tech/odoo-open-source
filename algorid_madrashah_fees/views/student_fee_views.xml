@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Student Fee Tree View -->
+    <record id="view_student_fee_tree" model="ir.ui.view">
+        <field name="name">algorid.student.fee.tree</field>
+        <field name="model">algorid.student.fee</field>
+        <field name="arch" type="xml">
+            <list string="Student Fees" decoration-danger="state == 'pending' and due_date &lt; current_date" decoration-warning="state == 'partial'" decoration-success="state == 'paid'">
+                <field name="student_id"/>
+                <field name="class_id"/>
+                <field name="fee_type_id"/>
+                <field name="period_month"/>
+                <field name="period_year"/>
+                <field name="amount"/>
+                <field name="discount_amount"/>
+                <field name="late_fee"/>
+                <field name="total_amount"/>
+                <field name="paid_amount"/>
+                <field name="due_amount"/>
+                <field name="due_date"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-warning="state in ('pending', 'partial')" decoration-success="state == 'paid'" decoration-muted="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Student Fee Form View -->
+    <record id="view_student_fee_form" model="ir.ui.view">
+        <field name="name">algorid.student.fee.form</field>
+        <field name="model">algorid.student.fee</field>
+        <field name="arch" type="xml">
+            <form string="Student Fee">
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_create_invoice" string="Create Invoice" type="object" invisible="state not in ('pending', 'partial') or invoice_id"/>
+                    <button name="action_register_payment" string="Register Payment" type="object" class="btn-primary" invisible="state not in ('pending', 'partial')"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state in ('paid', 'cancelled')"/>
+                    <button name="action_draft" string="Reset to Draft" type="object" invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,pending,paid"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="display_name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="student_id" readonly="state != 'draft'"/>
+                            <field name="class_id"/>
+                            <field name="fee_type_id" readonly="state != 'draft'"/>
+                            <field name="academic_year_id"/>
+                        </group>
+                        <group>
+                            <field name="period_month" readonly="state != 'draft'"/>
+                            <field name="period_year" readonly="state != 'draft'"/>
+                            <field name="due_date" readonly="state != 'draft'"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Amounts">
+                            <field name="amount" readonly="state != 'draft'"/>
+                            <field name="discount_id" readonly="state != 'draft'"/>
+                            <field name="discount_amount"/>
+                            <field name="late_fee"/>
+                        </group>
+                        <group string="Payment">
+                            <field name="total_amount"/>
+                            <field name="paid_amount"/>
+                            <field name="due_amount"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Payments" name="payments">
+                            <field name="payment_ids">
+                                <list>
+                                    <field name="payment_date"/>
+                                    <field name="amount"/>
+                                    <field name="payment_method"/>
+                                    <field name="reference"/>
+                                    <field name="received_by"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Invoice" name="invoice" invisible="not invoice_id">
+                            <group>
+                                <field name="invoice_id"/>
+                            </group>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Student Fee Search View -->
+    <record id="view_student_fee_search" model="ir.ui.view">
+        <field name="name">algorid.student.fee.search</field>
+        <field name="model">algorid.student.fee</field>
+        <field name="arch" type="xml">
+            <search string="Search Fees">
+                <field name="student_id"/>
+                <field name="class_id"/>
+                <field name="fee_type_id"/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Pending" name="pending" domain="[('state', '=', 'pending')]"/>
+                <filter string="Partially Paid" name="partial" domain="[('state', '=', 'partial')]"/>
+                <filter string="Paid" name="paid" domain="[('state', '=', 'paid')]"/>
+                <filter string="Overdue" name="overdue" domain="[('due_date', '&lt;', context_today().strftime('%Y-%m-%d')), ('state', 'in', ('pending', 'partial'))]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Student Fee Action -->
+    <record id="action_student_fee" model="ir.actions.act_window">
+        <field name="name">Student Fees</field>
+        <field name="res_model">algorid.student.fee</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_student_fee_search"/>
+        <field name="context">{'search_default_pending': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No fees found
+            </p>
+            <p>
+                Generate fees using the Fee Invoice wizard.
+            </p>
+        </field>
+    </record>
+
+    <!-- Overdue Fees Action -->
+    <record id="action_student_fee_overdue" model="ir.actions.act_window">
+        <field name="name">Overdue Fees</field>
+        <field name="res_model">algorid.student.fee</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_student_fee_search"/>
+        <field name="context">{'search_default_overdue': 1}</field>
+    </record>
+</odoo>
+

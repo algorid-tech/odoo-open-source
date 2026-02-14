@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Student Attendance Tree View -->
+    <record id="view_student_attendance_tree" model="ir.ui.view">
+        <field name="name">algorid.student.attendance.tree</field>
+        <field name="model">algorid.student.attendance</field>
+        <field name="arch" type="xml">
+            <list string="Student Attendance" editable="bottom">
+                <field name="date"/>
+                <field name="student_id"/>
+                <field name="class_id"/>
+                <field name="section_id"/>
+                <field name="status" widget="badge" decoration-success="status == 'present'" decoration-danger="status == 'absent'" decoration-warning="status == 'late'" decoration-info="status in ('excused', 'half_day')"/>
+                <field name="check_in_time" widget="float_time" optional="hide"/>
+                <field name="check_out_time" widget="float_time" optional="hide"/>
+                <field name="remarks" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Student Attendance Form View -->
+    <record id="view_student_attendance_form" model="ir.ui.view">
+        <field name="name">algorid.student.attendance.form</field>
+        <field name="model">algorid.student.attendance</field>
+        <field name="arch" type="xml">
+            <form string="Student Attendance">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="student_id"/>
+                            <field name="date"/>
+                            <field name="status" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="class_id" readonly="1"/>
+                            <field name="section_id" readonly="1"/>
+                            <field name="academic_year_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="check_in_time" widget="float_time"/>
+                            <field name="check_out_time" widget="float_time"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="remarks"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Student Attendance Search View -->
+    <record id="view_student_attendance_search" model="ir.ui.view">
+        <field name="name">algorid.student.attendance.search</field>
+        <field name="model">algorid.student.attendance</field>
+        <field name="arch" type="xml">
+            <search string="Search Attendance">
+                <field name="student_id"/>
+                <field name="class_id"/>
+                <field name="section_id"/>
+                <field name="date"/>
+                <filter string="Today" name="today" domain="[('date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Present" name="present" domain="[('status', '=', 'present')]"/>
+                <filter string="Absent" name="absent" domain="[('status', '=', 'absent')]"/>
+                <filter string="Late" name="late" domain="[('status', '=', 'late')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Student Attendance Action -->
+    <record id="action_student_attendance" model="ir.actions.act_window">
+        <field name="name">Student Attendance</field>
+        <field name="res_model">algorid.student.attendance</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_student_attendance_search"/>
+        <field name="context">{'search_default_today': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Record student attendance
+            </p>
+        </field>
+    </record>
+
+    <!-- Attendance Sheet Tree View -->
+    <record id="view_attendance_sheet_tree" model="ir.ui.view">
+        <field name="name">algorid.attendance.sheet.tree</field>
+        <field name="model">algorid.attendance.sheet</field>
+        <field name="arch" type="xml">
+            <list string="Attendance Sheets">
+                <field name="date"/>
+                <field name="class_id"/>
+                <field name="section_id"/>
+                <field name="total_students"/>
+                <field name="present_count"/>
+                <field name="absent_count"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'confirmed'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Attendance Sheet Form View -->
+    <record id="view_attendance_sheet_form" model="ir.ui.view">
+        <field name="name">algorid.attendance.sheet.form</field>
+        <field name="model">algorid.attendance.sheet</field>
+        <field name="arch" type="xml">
+            <form string="Attendance Sheet">
+                <header>
+                    <button name="action_load_students" string="Load Students" type="object" class="btn-secondary" invisible="state != 'draft' or line_ids"/>
+                    <button name="action_confirm" string="Confirm" type="object" class="btn-primary" invisible="state != 'draft' or not line_ids"/>
+                    <button name="action_draft" string="Reset to Draft" type="object" invisible="state != 'confirmed'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date" readonly="state == 'confirmed'"/>
+                            <field name="class_id" readonly="state == 'confirmed'"/>
+                            <field name="section_id" readonly="state == 'confirmed'"/>
+                        </group>
+                        <group>
+                            <field name="academic_year_id"/>
+                            <field name="total_students"/>
+                            <field name="present_count"/>
+                            <field name="absent_count"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Attendance" name="attendance">
+                            <field name="line_ids" readonly="state == 'confirmed'">
+                                <list editable="bottom">
+                                    <field name="roll_no"/>
+                                    <field name="student_id"/>
+                                    <field name="status" widget="badge" decoration-success="status == 'present'" decoration-danger="status == 'absent'" decoration-warning="status == 'late'"/>
+                                    <field name="remarks"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Attendance Sheet Action -->
+    <record id="action_attendance_sheet" model="ir.actions.act_window">
+        <field name="name">Attendance Sheets</field>
+        <field name="res_model">algorid.attendance.sheet</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create an attendance sheet for batch entry
+            </p>
+            <p>
+                Use attendance sheets to record attendance for an entire class at once.
+            </p>
+        </field>
+    </record>
+</odoo>
+

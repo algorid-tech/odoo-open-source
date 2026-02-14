@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Guardian Tree View -->
+    <record id="view_guardian_tree" model="ir.ui.view">
+        <field name="name">algorid.guardian.tree</field>
+        <field name="model">algorid.guardian</field>
+        <field name="arch" type="xml">
+            <list string="Guardians">
+                <field name="name"/>
+                <field name="relation"/>
+                <field name="mobile"/>
+                <field name="email"/>
+                <field name="occupation"/>
+                <field name="student_count"/>
+                <field name="is_emergency_contact" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Guardian Form View -->
+    <record id="view_guardian_form" model="ir.ui.view">
+        <field name="name">algorid.guardian.form</field>
+        <field name="model">algorid.guardian</field>
+        <field name="arch" type="xml">
+            <form string="Guardian">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_students" type="object" class="oe_stat_button" icon="fa-users">
+                            <field name="student_count" widget="statinfo" string="Students"/>
+                        </button>
+                    </div>
+                    <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Guardian Name"/>
+                        </h1>
+                        <field name="name_bn" placeholder="Guardian Name (Bangla)"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="relation"/>
+                            <field name="gender"/>
+                            <field name="date_of_birth"/>
+                            <field name="national_id"/>
+                        </group>
+                        <group>
+                            <field name="mobile"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="is_emergency_contact"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Professional" name="professional">
+                            <group>
+                                <group>
+                                    <field name="occupation"/>
+                                    <field name="designation"/>
+                                </group>
+                                <group>
+                                    <field name="organization"/>
+                                    <field name="monthly_income"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Address" name="address">
+                            <group>
+                                <group>
+                                    <field name="street"/>
+                                    <field name="street2"/>
+                                    <field name="city"/>
+                                </group>
+                                <group>
+                                    <field name="state_id"/>
+                                    <field name="zip"/>
+                                    <field name="country_id"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Students" name="students">
+                            <field name="student_ids">
+                                <list>
+                                    <field name="student_id"/>
+                                    <field name="name"/>
+                                    <field name="class_id"/>
+                                    <field name="section_id"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Portal" name="portal">
+                            <group>
+                                <field name="user_id"/>
+                                <button name="action_create_portal_user" string="Create Portal User" type="object" class="btn-primary" invisible="user_id"/>
+                            </group>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes" placeholder="Additional notes..."/>
+                        </page>
+                    </notebook>
+                    <field name="company_id" invisible="1"/>
+                    <field name="active" invisible="1"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Guardian Search View -->
+    <record id="view_guardian_search" model="ir.ui.view">
+        <field name="name">algorid.guardian.search</field>
+        <field name="model">algorid.guardian</field>
+        <field name="arch" type="xml">
+            <search string="Search Guardians">
+                <field name="name"/>
+                <field name="mobile"/>
+                <field name="email"/>
+                <field name="relation"/>
+                <filter string="Emergency Contacts" name="emergency" domain="[('is_emergency_contact', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Guardian Action -->
+    <record id="action_guardian" model="ir.actions.act_window">
+        <field name="name">Guardians</field>
+        <field name="res_model">algorid.guardian</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_guardian_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add your first guardian
+            </p>
+            <p>
+                Manage guardian information and link them to students.
+            </p>
+        </field>
+    </record>
+</odoo>
+

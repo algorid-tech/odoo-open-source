@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_madrashah_root"
+              name="Madrashah"
+              sequence="100"
+              web_icon="algorid_madrashah_base,static/description/menu.png"
+              groups="algorid_madrashah_base.group_madrashah_user"/>
+
+    <!-- Configuration Menu -->
+    <menuitem id="menu_madrashah_configuration"
+              name="Configuration"
+              parent="menu_madrashah_root"
+              sequence="100"
+              groups="algorid_madrashah_base.group_madrashah_admin"/>
+
+    <!-- Academic Menu -->
+    <menuitem id="menu_madrashah_academic"
+              name="Academic"
+              parent="menu_madrashah_configuration"
+              sequence="10"/>
+
+    <menuitem id="menu_academic_year"
+              name="Academic Years"
+              parent="menu_madrashah_academic"
+              action="action_academic_year"
+              sequence="10"/>
+
+    <menuitem id="menu_class"
+              name="Classes"
+              parent="menu_madrashah_academic"
+              action="action_class"
+              sequence="20"/>
+
+    <menuitem id="menu_section"
+              name="Sections"
+              parent="menu_madrashah_academic"
+              action="action_section"
+              sequence="30"/>
+
+    <menuitem id="menu_subject"
+              name="Subjects"
+              parent="menu_madrashah_academic"
+              action="action_subject"
+              sequence="40"/>
+</odoo>

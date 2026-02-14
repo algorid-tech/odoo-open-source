@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Fees Menu -->
+    <menuitem id="menu_madrashah_fees"
+              name="Fees"
+              parent="algorid_madrashah_base.menu_madrashah_root"
+              sequence="40"
+              groups="algorid_madrashah_base.group_madrashah_accountant"/>
+
+    <menuitem id="menu_student_fee"
+              name="Student Fees"
+              parent="menu_madrashah_fees"
+              action="action_student_fee"
+              sequence="10"/>
+
+    <menuitem id="menu_student_fee_overdue"
+              name="Overdue Fees"
+              parent="menu_madrashah_fees"
+              action="action_student_fee_overdue"
+              sequence="20"/>
+
+    <menuitem id="menu_generate_fees"
+              name="Generate Fees"
+              parent="menu_madrashah_fees"
+              action="action_fee_invoice_wizard"
+              sequence="30"/>
+
+    <!-- Configuration -->
+    <menuitem id="menu_fees_config"
+              name="Fees"
+              parent="algorid_madrashah_base.menu_madrashah_configuration"
+              sequence="30"/>
+
+    <menuitem id="menu_fee_structure"
+              name="Fee Structures"
+              parent="menu_fees_config"
+              action="action_fee_structure"
+              sequence="10"/>
+
+    <menuitem id="menu_fee_type"
+              name="Fee Types"
+              parent="menu_fees_config"
+              action="action_fee_type"
+              sequence="20"/>
+
+    <menuitem id="menu_fee_discount"
+              name="Discounts"
+              parent="menu_fees_config"
+              action="action_fee_discount"
+              sequence="30"/>
+</odoo>
+

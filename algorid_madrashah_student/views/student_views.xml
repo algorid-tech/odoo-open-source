@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Student Tree View -->
+    <record id="view_student_tree" model="ir.ui.view">
+        <field name="name">algorid.student.tree</field>
+        <field name="model">algorid.student</field>
+        <field name="arch" type="xml">
+            <list string="Students" default_order="name">
+                <field name="student_id"/>
+                <field name="name"/>
+                <field name="class_id"/>
+                <field name="section_id"/>
+                <field name="roll_no"/>
+                <field name="gender"/>
+                <field name="guardian_id"/>
+                <field name="mobile"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="state" widget="badge" decoration-success="state == 'active'" decoration-info="state == 'draft'" decoration-warning="state == 'suspended'" decoration-muted="state in ('graduated', 'left')"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Student Form View -->
+    <record id="view_student_form" model="ir.ui.view">
+        <field name="name">algorid.student.form</field>
+        <field name="model">algorid.student</field>
+        <field name="arch" type="xml">
+            <form string="Student">
+                <header>
+                    <button name="action_activate" string="Activate" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_graduate" string="Graduate" type="object" invisible="state != 'active'"/>
+                    <button name="action_leave" string="Mark as Left" type="object" invisible="state != 'active'"/>
+                    <button name="action_suspend" string="Suspend" type="object" invisible="state != 'active'"/>
+                    <button name="action_draft" string="Reset to Draft" type="object" invisible="state == 'draft'"/>
+                    <button name="action_create_portal_user" string="Create Portal User" type="object" invisible="user_id"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,graduated"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_documents" type="object" class="oe_stat_button" icon="fa-file">
+                            <field name="document_count" widget="statinfo" string="Documents"/>
+                        </button>
+                    </div>
+                    <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Student Name"/>
+                        </h1>
+                        <field name="name_bn" placeholder="Student Name (Bangla)"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="student_id"/>
+                            <field name="gender" widget="radio" options="{'horizontal': true}"/>
+                            <field name="date_of_birth"/>
+                            <field name="age"/>
+                            <field name="blood_group"/>
+                        </group>
+                        <group>
+                            <field name="class_id"/>
+                            <field name="section_id"/>
+                            <field name="roll_no"/>
+                            <field name="academic_year_id"/>
+                            <field name="admission_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Personal Information" name="personal">
+                            <group>
+                                <group string="Identity">
+                                    <field name="birth_certificate_no"/>
+                                    <field name="national_id"/>
+                                    <field name="religion"/>
+                                    <field name="nationality"/>
+                                </group>
+                                <group string="Contact">
+                                    <field name="phone"/>
+                                    <field name="mobile"/>
+                                    <field name="email"/>
+                                </group>
+                            </group>
+                            <group string="Present Address">
+                                <group>
+                                    <field name="street"/>
+                                    <field name="street2"/>
+                                    <field name="city"/>
+                                </group>
+                                <group>
+                                    <field name="state_id"/>
+                                    <field name="zip"/>
+                                    <field name="country_id"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="same_as_present"/>
+                            </group>
+                            <group string="Permanent Address" invisible="same_as_present">
+                                <group>
+                                    <field name="permanent_street"/>
+                                    <field name="permanent_street2"/>
+                                    <field name="permanent_city"/>
+                                </group>
+                                <group>
+                                    <field name="permanent_state_id"/>
+                                    <field name="permanent_zip"/>
+                                    <field name="permanent_country_id"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Parents/Guardian" name="guardian">
+                            <group>
+                                <group string="Father's Information">
+                                    <field name="father_name"/>
+                                    <field name="father_name_bn"/>
+                                    <field name="father_phone"/>
+                                    <field name="father_occupation"/>
+                                </group>
+                                <group string="Mother's Information">
+                                    <field name="mother_name"/>
+                                    <field name="mother_name_bn"/>
+                                    <field name="mother_phone"/>
+                                    <field name="mother_occupation"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="guardian_id"/>
+                                </group>
+                            </group>
+                            <field name="guardian_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Academic" name="academic">
+                            <group>
+                                <group>
+                                    <field name="admission_class_id"/>
+                                    <field name="previous_school"/>
+                                </group>
+                                <group>
+                                    <field name="leaving_date" invisible="state not in ('graduated', 'left')"/>
+                                    <field name="leaving_reason" invisible="state not in ('graduated', 'left')"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Medical" name="medical">
+                            <group>
+                                <group>
+                                    <field name="medical_info"/>
+                                    <field name="allergies"/>
+                                </group>
+                                <group>
+                                    <field name="emergency_contact"/>
+                                    <field name="emergency_phone"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Documents" name="documents">
+                            <field name="document_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="document_type"/>
+                                    <field name="file" filename="file_name"/>
+                                    <field name="file_name" column_invisible="1"/>
+                                    <field name="issue_date"/>
+                                    <field name="is_verified" widget="boolean_toggle"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Tags &amp; Notes" name="tags">
+                            <group>
+                                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            </group>
+                            <group>
+                                <field name="notes" placeholder="Additional notes..."/>
+                            </group>
+                        </page>
+                        <page string="Portal" name="portal">
+                            <group>
+                                <field name="user_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    <field name="company_id" invisible="1"/>
+                    <field name="active" invisible="1"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Student Kanban View -->
+    <record id="view_student_kanban" model="ir.ui.view">
+        <field name="name">algorid.student.kanban</field>
+        <field name="model">algorid.student</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name"/>
+                <field name="student_id"/>
+                <field name="class_id"/>
+                <field name="section_id"/>
+                <field name="image_128"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <aside>
+                            <field name="image_128" widget="image" options="{'preview_image': 'image_128'}"/>
+                        </aside>
+                        <main>
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong><field name="name"/></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span class="text-muted"><field name="student_id"/></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <field name="class_id"/>
+                                </div>
+                                <div class="col-6">
+                                    <field name="section_id"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <field name="state" widget="badge"/>
+                                </div>
+                            </div>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Student Search View -->
+    <record id="view_student_search" model="ir.ui.view">
+        <field name="name">algorid.student.search</field>
+        <field name="model">algorid.student</field>
+        <field name="arch" type="xml">
+            <search string="Search Students">
+                <field name="name"/>
+                <field name="student_id"/>
+                <field name="class_id"/>
+                <field name="section_id"/>
+                <field name="guardian_id"/>
+                <field name="mobile"/>
+                <filter string="Active" name="active_state" domain="[('state', '=', 'active')]"/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Graduated" name="graduated" domain="[('state', '=', 'graduated')]"/>
+                <filter string="Left" name="left" domain="[('state', '=', 'left')]"/>
+                <filter string="Male" name="male" domain="[('gender', '=', 'male')]"/>
+                <filter string="Female" name="female" domain="[('gender', '=', 'female')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Student Action -->
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">algorid.student</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="search_view_id" ref="view_student_search"/>
+        <field name="context">{'search_default_active_state': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add your first student
+            </p>
+            <p>
+                Manage student profiles, guardians, documents, and academic information.
+            </p>
+        </field>
+    </record>
+</odoo>
+

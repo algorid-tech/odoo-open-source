@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Student ID Card Report Template -->
+    <template id="report_student_id_card">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="student">
+                <div class="page" style="page-break-after: always;">
+                    <div style="border: 2px solid #333; border-radius: 10px; padding: 20px; width: 350px; margin: auto;">
+                        <div style="text-align: center; margin-bottom: 15px;">
+                            <h3 style="margin: 0; color: #2c3e50;">
+                                <t t-esc="student.company_id.name or 'Madrashah'"/>
+                            </h3>
+                            <p style="margin: 5px 0; font-size: 12px;">Student Identity Card</p>
+                        </div>
+
+                        <div style="text-align: center; margin-bottom: 15px;">
+                            <img t-if="student.image_1920"
+                                 t-att-src="image_data_uri(student.image_128)"
+                                 style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #333;"/>
+                            <div t-else="" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #333; background: #eee; margin: auto; line-height: 80px;">
+                                No Photo
+                            </div>
+                        </div>
+
+                        <table style="width: 100%; font-size: 12px;">
+                            <tr>
+                                <td style="padding: 5px; font-weight: bold;">ID:</td>
+                                <td style="padding: 5px;"><t t-esc="student.student_id"/></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px; font-weight: bold;">Name:</td>
+                                <td style="padding: 5px;"><t t-esc="student.name"/></td>
+                            </tr>
+                            <tr t-if="student.name_bn">
+                                <td style="padding: 5px; font-weight: bold;">নাম:</td>
+                                <td style="padding: 5px;"><t t-esc="student.name_bn"/></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px; font-weight: bold;">Class:</td>
+                                <td style="padding: 5px;"><t t-esc="student.class_id.name"/> - <t t-esc="student.section_id.name or ''"/></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px; font-weight: bold;">Roll No:</td>
+                                <td style="padding: 5px;"><t t-esc="student.roll_no"/></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px; font-weight: bold;">Blood Group:</td>
+                                <td style="padding: 5px;"><t t-esc="student.blood_group or '-'"/></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px; font-weight: bold;">Guardian:</td>
+                                <td style="padding: 5px;"><t t-esc="student.guardian_id.name or student.father_name or '-'"/></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px; font-weight: bold;">Contact:</td>
+                                <td style="padding: 5px;"><t t-esc="student.mobile or student.guardian_id.mobile or '-'"/></td>
+                            </tr>
+                        </table>
+
+                        <div style="text-align: center; margin-top: 15px; font-size: 10px; color: #666;">
+                            <p style="margin: 0;">Valid for Academic Year: <t t-esc="student.academic_year_id.name or '-'"/></p>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- Report Action -->
+    <record id="action_report_student_id_card" model="ir.actions.report">
+        <field name="name">Student ID Card</field>
+        <field name="model">algorid.student</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">algorid_madrashah_student.report_student_id_card</field>
+        <field name="report_file">algorid_madrashah_student.report_student_id_card</field>
+        <field name="print_report_name">'Student_ID_Card_%s' % (object.student_id)</field>
+        <field name="binding_model_id" ref="model_algorid_student"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+

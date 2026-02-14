@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_madrashah" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.madrashah</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Madrashah" string="Madrashah" name="algorid_madrashah_base" groups="algorid_madrashah_base.group_madrashah_admin">
+                    <block title="Institution Settings">
+                        <setting string="Institution Name" help="Name of your Madrashah">
+                            <field name="madrashah_name"/>
+                        </setting>
+                        <setting string="Institution Name (Bangla)">
+                            <field name="madrashah_name_bn"/>
+                        </setting>
+                        <setting string="Current Academic Year">
+                            <field name="current_academic_year_id"/>
+                        </setting>
+                    </block>
+                    <block title="Fee Settings">
+                        <setting string="Late Fee Grace Days" help="Number of days after due date before late fee applies">
+                            <field name="late_fee_grace_days"/>
+                        </setting>
+                        <setting string="Late Fee Percentage" help="Percentage to charge as late fee">
+                            <field name="late_fee_percentage"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

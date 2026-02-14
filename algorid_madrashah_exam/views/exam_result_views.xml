@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Exam Result Tree View -->
+    <record id="view_exam_result_tree" model="ir.ui.view">
+        <field name="name">algorid.exam.result.tree</field>
+        <field name="model">algorid.exam.result</field>
+        <field name="arch" type="xml">
+            <list string="Exam Results" decoration-success="is_passed" decoration-danger="not is_passed">
+                <field name="exam_id"/>
+                <field name="student_id"/>
+                <field name="class_id"/>
+                <field name="roll_no"/>
+                <field name="total_marks"/>
+                <field name="total_full_marks"/>
+                <field name="percentage"/>
+                <field name="gpa"/>
+                <field name="grade"/>
+                <field name="rank"/>
+                <field name="is_passed"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Exam Result Form View -->
+    <record id="view_exam_result_form" model="ir.ui.view">
+        <field name="name">algorid.exam.result.form</field>
+        <field name="model">algorid.exam.result</field>
+        <field name="arch" type="xml">
+            <form string="Exam Result">
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_publish" string="Publish" type="object" invisible="state != 'confirmed'"/>
+                    <button name="action_draft" string="Reset to Draft" type="object" invisible="state == 'draft'"/>
+                    <button name="action_print_report_card" string="Print Report Card" type="object" icon="fa-print"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="display_name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="exam_id" readonly="state != 'draft'"/>
+                            <field name="student_id" readonly="state != 'draft'"/>
+                            <field name="class_id"/>
+                            <field name="section_id"/>
+                            <field name="roll_no"/>
+                        </group>
+                        <group>
+                            <field name="total_marks"/>
+                            <field name="total_full_marks"/>
+                            <field name="percentage"/>
+                            <field name="gpa"/>
+                            <field name="grade"/>
+                            <field name="rank"/>
+                            <field name="is_passed" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Subject Results" name="results">
+                            <field name="line_ids" readonly="state == 'published'">
+                                <list editable="bottom">
+                                    <field name="subject_id"/>
+                                    <field name="full_marks"/>
+                                    <field name="pass_marks"/>
+                                    <field name="marks_obtained"/>
+                                    <field name="percentage"/>
+                                    <field name="grade"/>
+                                    <field name="grade_point"/>
+                                    <field name="is_passed" widget="boolean_toggle"/>
+                                    <field name="remarks"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Remarks" name="remarks">
+                            <field name="remarks"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Exam Result Search View -->
+    <record id="view_exam_result_search" model="ir.ui.view">
+        <field name="name">algorid.exam.result.search</field>
+        <field name="model">algorid.exam.result</field>
+        <field name="arch" type="xml">
+            <search string="Search Results">
+                <field name="student_id"/>
+                <field name="exam_id"/>
+                <field name="class_id"/>
+                <filter string="Passed" name="passed" domain="[('is_passed', '=', True)]"/>
+                <filter string="Failed" name="failed" domain="[('is_passed', '=', False)]"/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Published" name="published" domain="[('state', '=', 'published')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Exam Result Action -->
+    <record id="action_exam_result" model="ir.actions.act_window">
+        <field name="name">Exam Results</field>
+        <field name="res_model">algorid.exam.result</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_exam_result_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No results found
+            </p>
+            <p>
+                Use the Marks Entry wizard to enter student marks.
+            </p>
+        </field>
+    </record>
+</odoo>
+

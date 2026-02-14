@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_academic_year_admin,algorid.academic.year.admin,model_algorid_academic_year,group_madrashah_admin,1,1,1,1
+access_academic_year_user,algorid.academic.year.user,model_algorid_academic_year,group_madrashah_user,1,0,0,0
+access_class_admin,algorid.class.admin,model_algorid_class,group_madrashah_admin,1,1,1,1
+access_class_user,algorid.class.user,model_algorid_class,group_madrashah_user,1,0,0,0
+access_section_admin,algorid.section.admin,model_algorid_section,group_madrashah_admin,1,1,1,1
+access_section_user,algorid.section.user,model_algorid_section,group_madrashah_user,1,0,0,0
+access_subject_admin,algorid.subject.admin,model_algorid_subject,group_madrashah_admin,1,1,1,1
+access_subject_user,algorid.subject.user,model_algorid_subject,group_madrashah_user,1,0,0,0

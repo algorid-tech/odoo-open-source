@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Timetable Report Template -->
+    <template id="report_timetable_document">
+        <t t-call="web.external_layout">
+            <t t-set="o" t-value="doc"/>
+            <div class="page">
+                <div class="text-center mb-4">
+                    <h2>Class Timetable</h2>
+                    <h4>
+                        <t t-esc="o.class_id.name"/>
+                        <t t-if="o.section_id"> - <t t-esc="o.section_id.name"/></t>
+                    </h4>
+                    <p>Academic Year: <t t-esc="o.academic_year_id.name"/></p>
+                </div>
+
+                <table class="table table-bordered table-sm">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>Period</th>
+                            <th>Time</th>
+                            <th>Saturday</th>
+                            <th>Sunday</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="periods" t-value="o.env['algorid.period'].search([('period_type', '=', 'class')], order='sequence')"/>
+                        <t t-foreach="periods" t-as="period">
+                            <tr>
+                                <td class="font-weight-bold"><t t-esc="period.name"/></td>
+                                <td>
+                                    <t t-esc="'{:02d}:{:02d}'.format(int(period.start_time), int((period.start_time % 1) * 60))"/>
+                                    -
+                                    <t t-esc="'{:02d}:{:02d}'.format(int(period.end_time), int((period.end_time % 1) * 60))"/>
+                                </td>
+                                <t t-foreach="['0', '1', '2', '3', '4', '5']" t-as="day">
+                                    <t t-set="slot" t-value="o.line_ids.filtered(lambda l: l.day_of_week == day and l.period_id.id == period.id)"/>
+                                    <td>
+                                        <t t-if="slot">
+                                            <strong><t t-esc="slot.subject_id.name"/></strong><br/>
+                                            <small><t t-esc="slot.teacher_id.name or ''"/></small>
+                                        </t>
+                                        <t t-else="">-</t>
+                                    </td>
+                                </t>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_timetable">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="algorid_madrashah_timetable.report_timetable_document"/>
+            </t>
+        </t>
+    </template>
+
+    <!-- Report Action -->
+    <record id="action_report_timetable" model="ir.actions.report">
+        <field name="name">Timetable</field>
+        <field name="model">algorid.timetable</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">algorid_madrashah_timetable.report_timetable</field>
+        <field name="report_file">algorid_madrashah_timetable.report_timetable</field>
+        <field name="print_report_name">'Timetable_%s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_algorid_timetable"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+
