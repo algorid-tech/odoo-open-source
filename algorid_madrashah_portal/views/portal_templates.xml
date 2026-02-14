@@ -1,33 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Madrashah Portal Home Extension - Simple version that doesn't interfere with JS -->
+    <!-- Hide the default portal common category (Addresses) -->
+    <template id="portal_my_home_hide_common" name="Hide Portal Common Category" inherit_id="portal.portal_my_home" priority="50">
+        <xpath expr="//div[@id='portal_common_category']" position="attributes">
+            <attribute name="class">o_portal_category row g-2 mt-3 d-none</attribute>
+        </xpath>
+    </template>
+
+    <!-- Hide the o_portal_docs div completely (removes spinner and all default categories) -->
+    <template id="portal_my_home_hide_docs" name="Hide Portal Docs" inherit_id="portal.portal_my_home" priority="51">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="attributes">
+            <attribute name="class">o_portal_docs row g-2 d-none</attribute>
+        </xpath>
+    </template>
+
+    <!-- Madrashah Portal Home - Custom clean layout -->
     <template id="portal_my_home_madrashah" name="Portal My Home - Madrashah" inherit_id="portal.portal_my_home" priority="99">
-        <xpath expr="//div[@id='oe_structure_portal_my_home_2']" position="before">
-            <div class="container mt-4 mb-4">
-                <h5 class="text-muted mb-3"><i class="fa fa-graduation-cap me-2"/>Madrashah</h5>
-                <div class="row">
-                    <div class="col-6 col-md-3 mb-3">
-                        <a href="/my/attendance" class="btn btn-outline-primary w-100 py-3">
-                            <i class="fa fa-calendar-check-o d-block mb-2" style="font-size: 24px;"/>
-                            <span>Attendance</span>
+        <xpath expr="//div[@id='oe_structure_portal_my_home_1']" position="after">
+            <div class="container-fluid py-4">
+                <h4 class="mb-4"><i class="fa fa-graduation-cap me-2"/>Madrashah Portal</h4>
+                <div class="row g-3">
+                    <!-- Attendance -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="/my/attendance" class="card h-100 text-decoration-none border-0 shadow-sm">
+                            <div class="card-body text-center py-4">
+                                <i class="fa fa-calendar-check-o text-primary mb-3" style="font-size: 2.5rem;"/>
+                                <h6 class="card-title mb-1">Attendance</h6>
+                                <small class="text-muted">View attendance records</small>
+                            </div>
                         </a>
                     </div>
-                    <div class="col-6 col-md-3 mb-3">
-                        <a href="/my/fees" class="btn btn-outline-primary w-100 py-3">
-                            <i class="fa fa-money d-block mb-2" style="font-size: 24px;"/>
-                            <span>Fees</span>
+                    <!-- Fees -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="/my/fees" class="card h-100 text-decoration-none border-0 shadow-sm">
+                            <div class="card-body text-center py-4">
+                                <i class="fa fa-money text-success mb-3" style="font-size: 2.5rem;"/>
+                                <h6 class="card-title mb-1">Fees</h6>
+                                <small class="text-muted">View fee status</small>
+                            </div>
                         </a>
                     </div>
-                    <div class="col-6 col-md-3 mb-3">
-                        <a href="/my/results" class="btn btn-outline-primary w-100 py-3">
-                            <i class="fa fa-trophy d-block mb-2" style="font-size: 24px;"/>
-                            <span>Results</span>
+                    <!-- Results -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="/my/results" class="card h-100 text-decoration-none border-0 shadow-sm">
+                            <div class="card-body text-center py-4">
+                                <i class="fa fa-trophy text-warning mb-3" style="font-size: 2.5rem;"/>
+                                <h6 class="card-title mb-1">Results</h6>
+                                <small class="text-muted">View exam results</small>
+                            </div>
                         </a>
                     </div>
-                    <div class="col-6 col-md-3 mb-3">
-                        <a href="/my/timetable" class="btn btn-outline-primary w-100 py-3">
-                            <i class="fa fa-clock-o d-block mb-2" style="font-size: 24px;"/>
-                            <span>Timetable</span>
+                    <!-- Timetable -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="/my/timetable" class="card h-100 text-decoration-none border-0 shadow-sm">
+                            <div class="card-body text-center py-4">
+                                <i class="fa fa-clock-o text-info mb-3" style="font-size: 2.5rem;"/>
+                                <h6 class="card-title mb-1">Timetable</h6>
+                                <small class="text-muted">View class schedule</small>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Connection & Security -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="/my/security" class="card h-100 text-decoration-none border-0 shadow-sm">
+                            <div class="card-body text-center py-4">
+                                <i class="fa fa-lock text-secondary mb-3" style="font-size: 2.5rem;"/>
+                                <h6 class="card-title mb-1">Security</h6>
+                                <small class="text-muted">Connection settings</small>
+                            </div>
                         </a>
                     </div>
                 </div>
