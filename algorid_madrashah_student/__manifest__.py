@@ -49,7 +49,9 @@
         'views/menu_views.xml',
         'report/student_id_card_report.xml',
     ],
-    'images': [],
+    'images': [
+        'static/description/banner.png'
+    ],
     'installable': True,
     'application': False,
     'auto_install': False,

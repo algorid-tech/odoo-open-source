@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Madrashah Management - Exams & Results</title>
+    <style>
+        :root {
+            --primary-color: #875A7B;
+            --secondary-color: #0C4B33;
+            --accent-color: #00A09D;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+        body { font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: var(--text-color); margin: 0; padding: 0; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .oe_banner { background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: white; padding: 60px 40px; text-align: center; border-radius: 8px; margin-bottom: 40px; }
+        .oe_banner h1 { font-size: 2.5em; margin-bottom: 10px; font-weight: 600; }
+        .oe_banner h2 { font-size: 1.3em; font-weight: 300; opacity: 0.9; }
+        .oe_section { margin-bottom: 40px; padding: 30px; background: var(--light-bg); border-radius: 8px; }
+        .oe_section h3 { color: var(--primary-color); font-size: 1.5em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--primary-color); }
+        .oe_feature_list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; list-style: none; padding: 0; }
+        .oe_feature_item { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .oe_feature_item h4 { color: var(--secondary-color); margin-top: 0; }
+        .oe_info_box { background: linear-gradient(135deg, #e8f4f8 0%, #f0f7f4 100%); border-left: 4px solid var(--accent-color); padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .oe_badge { display: inline-block; padding: 5px 15px; background: var(--accent-color); color: white; border-radius: 20px; font-size: 0.85em; margin: 5px; }
+        .oe_table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .oe_table th, .oe_table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .oe_table th { background: var(--primary-color); color: white; }
+        .oe_table tr:hover { background: var(--light-bg); }
+        .oe_company { text-align: center; padding: 40px; background: var(--light-bg); border-radius: 8px; margin-top: 40px; }
+        .oe_company a { color: var(--primary-color); text-decoration: none; }
+        .grade-box { display: inline-block; padding: 8px 16px; border-radius: 6px; margin: 3px; color: white; font-weight: bold; }
+        .grade-aplus { background: #28a745; }
+        .grade-a { background: #20c997; }
+        .grade-aminus { background: #17a2b8; }
+        .grade-b { background: #6f42c1; }
+        .grade-c { background: #fd7e14; }
+        .grade-d { background: #dc3545; }
+        .grade-f { background: #6c757d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Banner -->
+        <div class="oe_banner">
+            <h1>🎓 Exams & Results Management</h1>
+            <h2>Madrashah Management System - Complete Examination System</h2>
+            <div style="margin-top: 20px;">
+                <span class="oe_badge">Odoo 19 Community</span>
+                <span class="oe_badge">Exam Scheduling</span>
+                <span class="oe_badge">Auto Grading</span>
+                <span class="oe_badge">Report Cards</span>
+            </div>
+        </div>
+
+        <!-- Overview -->
+        <div class="oe_section">
+            <h3>📋 Overview</h3>
+            <p>
+                <strong>Madrashah Exams & Results</strong> provides a complete examination management
+                system from scheduling exams to generating report cards. Automated grade calculation,
+                GPA computation, and professional report card generation.
+            </p>
+            <div class="oe_info_box">
+                <strong>🤖 Automatic Calculations:</strong> Grades, GPA, percentages, and pass/fail
+                status are automatically calculated based on configurable grading rules.
+            </div>
+        </div>
+
+        <!-- Grading System -->
+        <div class="oe_section">
+            <h3>📊 Grading System</h3>
+            <div style="text-align: center; margin: 20px 0;">
+                <span class="grade-box grade-aplus">A+ (80-100)</span>
+                <span class="grade-box grade-a">A (70-79)</span>
+                <span class="grade-box grade-aminus">A- (60-69)</span>
+                <span class="grade-box grade-b">B (50-59)</span>
+                <span class="grade-box grade-c">C (40-49)</span>
+                <span class="grade-box grade-d">D (33-39)</span>
+                <span class="grade-box grade-f">F (&lt;33)</span>
+            </div>
+            <p style="text-align: center; color: #666;">
+                <em>Fully configurable grade boundaries and grade points</em>
+            </p>
+        </div>
+
+        <!-- Key Features -->
+        <div class="oe_section">
+            <h3>✨ Key Features</h3>
+            <ul class="oe_feature_list">
+                <li class="oe_feature_item">
+                    <h4>📅 Exam Calendar</h4>
+                    <p>Create exam calendars with dates, times, and room assignments for each subject.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>📝 Marks Entry</h4>
+                    <p>Easy marks entry wizard for teachers to enter marks subject-wise.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>🔢 Auto Grade Calculation</h4>
+                    <p>Automatic calculation of grades based on configurable grading rules.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>📊 GPA Calculation</h4>
+                    <p>Automatic GPA calculation based on grade points and credit hours.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>📄 Report Cards</h4>
+                    <p>Professional report card generation with school logo and signatures.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>📈 Result Analysis</h4>
+                    <p>Class-wise and subject-wise result analysis and statistics.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>🔄 Result Workflow</h4>
+                    <p>Draft → Confirmed → Published workflow for result management.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>🌐 Portal Access</h4>
+                    <p>Students and parents can view results through the online portal.</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Exam Types -->
+        <div class="oe_section">
+            <h3>📚 Supported Exam Types</h3>
+            <table class="oe_table">
+                <tr>
+                    <th>Exam Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><strong>Class Test</strong></td>
+                    <td>Regular class tests and quizzes</td>
+                </tr>
+                <tr>
+                    <td><strong>Monthly Test</strong></td>
+                    <td>Monthly assessment examinations</td>
+                </tr>
+                <tr>
+                    <td><strong>Term Exam</strong></td>
+                    <td>Half-yearly/Quarterly examinations</td>
+                </tr>
+                <tr>
+                    <td><strong>Final Exam</strong></td>
+                    <td>Annual/Final examinations</td>
+                </tr>
+                <tr>
+                    <td><strong>Practical</strong></td>
+                    <td>Practical/Lab examinations</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Technical Info -->
+        <div class="oe_section">
+            <h3>🔧 Technical Information</h3>
+            <table class="oe_table">
+                <tr><td><strong>Version</strong></td><td>19.0.1.0.0</td></tr>
+                <tr><td><strong>License</strong></td><td>LGPL-3</td></tr>
+                <tr><td><strong>Dependencies</strong></td><td>algorid_madrashah_student, algorid_madrashah_hr</td></tr>
+                <tr><td><strong>Odoo Version</strong></td><td>19.0 Community Edition</td></tr>
+            </table>
+        </div>
+
+        <!-- Company Info -->
+        <div class="oe_company">
+            <h3>Developed by</h3>
+            <h2><strong>Algorid Limited</strong></h2>
+            <p>
+                🌐 <a href="https://www.algorid.com" target="_blank">www.algorid.com</a><br>
+                📧 <a href="mailto:contact@algorid.com">contact@algorid.com</a>
+            </p>
+            <p style="margin-top: 20px; color: #666;">© 2025 - Today Algorid Limited. All Rights Reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+

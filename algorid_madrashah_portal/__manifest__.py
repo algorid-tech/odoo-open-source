@@ -46,7 +46,9 @@
         'security/portal_security.xml',
         'views/portal_templates.xml',
     ],
-    'images': [],
+    'images': [
+        'static/description/banner.png'
+    ],
     'installable': True,
     'application': False,
     'auto_install': False,

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Madrashah Management - Portal</title>
+    <style>
+        :root {
+            --primary-color: #875A7B;
+            --secondary-color: #0C4B33;
+            --accent-color: #00A09D;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+        body { font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: var(--text-color); margin: 0; padding: 0; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .oe_banner { background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: white; padding: 60px 40px; text-align: center; border-radius: 8px; margin-bottom: 40px; }
+        .oe_banner h1 { font-size: 2.5em; margin-bottom: 10px; font-weight: 600; }
+        .oe_banner h2 { font-size: 1.3em; font-weight: 300; opacity: 0.9; }
+        .oe_section { margin-bottom: 40px; padding: 30px; background: var(--light-bg); border-radius: 8px; }
+        .oe_section h3 { color: var(--primary-color); font-size: 1.5em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--primary-color); }
+        .oe_feature_list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; list-style: none; padding: 0; }
+        .oe_feature_item { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .oe_feature_item h4 { color: var(--secondary-color); margin-top: 0; }
+        .oe_info_box { background: linear-gradient(135deg, #e8f4f8 0%, #f0f7f4 100%); border-left: 4px solid var(--accent-color); padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .oe_badge { display: inline-block; padding: 5px 15px; background: var(--accent-color); color: white; border-radius: 20px; font-size: 0.85em; margin: 5px; }
+        .oe_table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .oe_table th, .oe_table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .oe_table th { background: var(--primary-color); color: white; }
+        .oe_table tr:hover { background: var(--light-bg); }
+        .oe_company { text-align: center; padding: 40px; background: var(--light-bg); border-radius: 8px; margin-top: 40px; }
+        .oe_company a { color: var(--primary-color); text-decoration: none; }
+        .portal-menu { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin: 20px 0; }
+        .portal-menu-item { background: white; padding: 20px 30px; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); text-align: center; min-width: 150px; }
+        .portal-menu-item i { font-size: 2em; color: var(--accent-color); display: block; margin-bottom: 10px; }
+        .portal-menu-item span { font-weight: 600; color: var(--text-color); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Banner -->
+        <div class="oe_banner">
+            <h1>🌐 Parent & Student Portal</h1>
+            <h2>Madrashah Management System - Online Access for Parents & Students</h2>
+            <div style="margin-top: 20px;">
+                <span class="oe_badge">Odoo 19 Community</span>
+                <span class="oe_badge">Parent Portal</span>
+                <span class="oe_badge">Student Portal</span>
+                <span class="oe_badge">Mobile Friendly</span>
+            </div>
+        </div>
+
+        <!-- Overview -->
+        <div class="oe_section">
+            <h3>📋 Overview</h3>
+            <p>
+                <strong>Madrashah Portal</strong> provides secure online access for parents and students
+                to view academic information. Check attendance, fee status, exam results, and class
+                timetables from anywhere, anytime.
+            </p>
+            <div class="oe_info_box">
+                <strong>📱 Mobile Responsive:</strong> Fully responsive design works seamlessly on
+                smartphones, tablets, and desktop computers.
+            </div>
+        </div>
+
+        <!-- Portal Menu Preview -->
+        <div class="oe_section">
+            <h3>🖥️ Portal Menu</h3>
+            <div class="portal-menu">
+                <div class="portal-menu-item">
+                    <i>👤</i>
+                    <span>My Profile</span>
+                </div>
+                <div class="portal-menu-item">
+                    <i>📅</i>
+                    <span>Attendance</span>
+                </div>
+                <div class="portal-menu-item">
+                    <i>💰</i>
+                    <span>Fees</span>
+                </div>
+                <div class="portal-menu-item">
+                    <i>🎓</i>
+                    <span>Results</span>
+                </div>
+                <div class="portal-menu-item">
+                    <i>🗓️</i>
+                    <span>Timetable</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Features -->
+        <div class="oe_section">
+            <h3>✨ Key Features</h3>
+            <ul class="oe_feature_list">
+                <li class="oe_feature_item">
+                    <h4>👤 Student Profile</h4>
+                    <p>View student profile, class information, and personal details.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>📅 Attendance History</h4>
+                    <p>View attendance records with date-wise filtering and statistics.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>💰 Fee Status</h4>
+                    <p>Check fee dues, payment history, and download receipts.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>🎓 Exam Results</h4>
+                    <p>View exam results, marks, grades, and GPA with subject breakdown.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>🗓️ Class Timetable</h4>
+                    <p>View weekly class schedule with subjects and teachers.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>👨‍👩‍👧 Multi-Student (Guardian)</h4>
+                    <p>Guardians can view information for all their children from single login.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>🔐 Secure Access</h4>
+                    <p>Secure login with email verification and password reset.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>📱 Mobile Friendly</h4>
+                    <p>Responsive design for optimal viewing on all devices.</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Access Comparison -->
+        <div class="oe_section">
+            <h3>👥 Portal Access by User Type</h3>
+            <table class="oe_table">
+                <tr>
+                    <th>Feature</th>
+                    <th>Student</th>
+                    <th>Guardian/Parent</th>
+                </tr>
+                <tr>
+                    <td>View Profile</td>
+                    <td>✅ Own profile</td>
+                    <td>✅ Children's profiles</td>
+                </tr>
+                <tr>
+                    <td>Attendance</td>
+                    <td>✅ Own records</td>
+                    <td>✅ All children</td>
+                </tr>
+                <tr>
+                    <td>Fee Status</td>
+                    <td>✅ Own fees</td>
+                    <td>✅ All children</td>
+                </tr>
+                <tr>
+                    <td>Exam Results</td>
+                    <td>✅ Own results</td>
+                    <td>✅ All children</td>
+                </tr>
+                <tr>
+                    <td>Timetable</td>
+                    <td>✅ Own class</td>
+                    <td>✅ Children's classes</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Technical Info -->
+        <div class="oe_section">
+            <h3>🔧 Technical Information</h3>
+            <table class="oe_table">
+                <tr><td><strong>Version</strong></td><td>19.0.1.0.0</td></tr>
+                <tr><td><strong>License</strong></td><td>LGPL-3</td></tr>
+                <tr><td><strong>Dependencies</strong></td><td>portal, algorid_madrashah_student, algorid_madrashah_attendance, algorid_madrashah_fees, algorid_madrashah_exam, algorid_madrashah_timetable</td></tr>
+                <tr><td><strong>Odoo Version</strong></td><td>19.0 Community Edition</td></tr>
+            </table>
+        </div>
+
+        <!-- Company Info -->
+        <div class="oe_company">
+            <h3>Developed by</h3>
+            <h2><strong>Algorid Limited</strong></h2>
+            <p>
+                🌐 <a href="https://www.algorid.com" target="_blank">www.algorid.com</a><br>
+                📧 <a href="mailto:contact@algorid.com">contact@algorid.com</a>
+            </p>
+            <p style="margin-top: 20px; color: #666;">© 2025 - Today Algorid Limited. All Rights Reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -44,7 +44,9 @@
         'views/menu_views.xml',
         'report/timetable_report.xml',
     ],
-    'images': [],
+    'images': [
+        'static/description/banner.png'
+    ],
     'installable': True,
     'application': False,
     'auto_install': False,

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Madrashah Management - Fees</title>
+    <style>
+        :root {
+            --primary-color: #875A7B;
+            --secondary-color: #0C4B33;
+            --accent-color: #00A09D;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+        body { font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: var(--text-color); margin: 0; padding: 0; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .oe_banner { background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: white; padding: 60px 40px; text-align: center; border-radius: 8px; margin-bottom: 40px; }
+        .oe_banner h1 { font-size: 2.5em; margin-bottom: 10px; font-weight: 600; }
+        .oe_banner h2 { font-size: 1.3em; font-weight: 300; opacity: 0.9; }
+        .oe_section { margin-bottom: 40px; padding: 30px; background: var(--light-bg); border-radius: 8px; }
+        .oe_section h3 { color: var(--primary-color); font-size: 1.5em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--primary-color); }
+        .oe_feature_list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; list-style: none; padding: 0; }
+        .oe_feature_item { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .oe_feature_item h4 { color: var(--secondary-color); margin-top: 0; }
+        .oe_info_box { background: linear-gradient(135deg, #e8f4f8 0%, #f0f7f4 100%); border-left: 4px solid var(--accent-color); padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .oe_badge { display: inline-block; padding: 5px 15px; background: var(--accent-color); color: white; border-radius: 20px; font-size: 0.85em; margin: 5px; }
+        .oe_table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .oe_table th, .oe_table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .oe_table th { background: var(--primary-color); color: white; }
+        .oe_table tr:hover { background: var(--light-bg); }
+        .oe_company { text-align: center; padding: 40px; background: var(--light-bg); border-radius: 8px; margin-top: 40px; }
+        .oe_company a { color: var(--primary-color); text-decoration: none; }
+        .fee-flow { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+        .fee-flow-item { background: white; padding: 15px 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
+        .fee-flow-arrow { font-size: 24px; color: var(--accent-color); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Banner -->
+        <div class="oe_banner">
+            <h1>💰 Fees Management</h1>
+            <h2>Madrashah Management System - Complete Fee Collection System</h2>
+            <div style="margin-top: 20px;">
+                <span class="oe_badge">Odoo 19 Community</span>
+                <span class="oe_badge">Fee Structures</span>
+                <span class="oe_badge">Payment Tracking</span>
+                <span class="oe_badge">Odoo Accounting</span>
+            </div>
+        </div>
+
+        <!-- Overview -->
+        <div class="oe_section">
+            <h3>📋 Overview</h3>
+            <p>
+                <strong>Madrashah Fees Management</strong> provides comprehensive fee collection and
+                payment tracking for educational institutions. Define fee structures, generate invoices,
+                track payments, and manage discounts with full integration to Odoo Accounting.
+            </p>
+            <div class="oe_info_box">
+                <strong>🔗 Odoo Accounting Integration:</strong> Seamlessly integrates with Odoo's
+                accounting module for proper journal entries, invoicing, and financial reporting.
+            </div>
+        </div>
+
+        <!-- Fee Flow -->
+        <div class="oe_section">
+            <h3>🔄 Fee Collection Workflow</h3>
+            <div class="fee-flow">
+                <div class="fee-flow-item">
+                    <strong>📋 Fee Structure</strong><br>
+                    <small>Define fee types & amounts</small>
+                </div>
+                <span class="fee-flow-arrow">→</span>
+                <div class="fee-flow-item">
+                    <strong>📄 Generate Fees</strong><br>
+                    <small>Create student invoices</small>
+                </div>
+                <span class="fee-flow-arrow">→</span>
+                <div class="fee-flow-item">
+                    <strong>💳 Payment</strong><br>
+                    <small>Record payments</small>
+                </div>
+                <span class="fee-flow-arrow">→</span>
+                <div class="fee-flow-item">
+                    <strong>✅ Receipt</strong><br>
+                    <small>Generate receipts</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Features -->
+        <div class="oe_section">
+            <h3>✨ Key Features</h3>
+            <ul class="oe_feature_list">
+                <li class="oe_feature_item">
+                    <h4>📊 Fee Structures</h4>
+                    <p>Define class-wise fee structures with multiple fee types and amounts.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>🏷️ Fee Types</h4>
+                    <p>Create various fee types: Tuition, Admission, Exam, Transport, Library, etc.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>📄 Bulk Invoice Generation</h4>
+                    <p>Generate fees for entire class/section at once for a specific period.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>💳 Payment Tracking</h4>
+                    <p>Track partial and full payments with multiple payment methods.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>⏰ Late Fee Calculation</h4>
+                    <p>Automatic late fee calculation based on due date and grace period.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>🎁 Discounts</h4>
+                    <p>Apply discounts: sibling, scholarship, staff children, merit-based.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>📧 Payment Reminders</h4>
+                    <p>Send payment reminders to parents for overdue fees.</p>
+                </li>
+                <li class="oe_feature_item">
+                    <h4>🌐 Portal Access</h4>
+                    <p>Parents can view fee status and payment history via portal.</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Fee Types -->
+        <div class="oe_section">
+            <h3>💵 Pre-configured Fee Types</h3>
+            <table class="oe_table">
+                <tr>
+                    <th>Fee Type</th>
+                    <th>Frequency</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><strong>Tuition Fee</strong></td>
+                    <td>Monthly</td>
+                    <td>Regular monthly tuition charges</td>
+                </tr>
+                <tr>
+                    <td><strong>Admission Fee</strong></td>
+                    <td>One-time</td>
+                    <td>New student admission charges</td>
+                </tr>
+                <tr>
+                    <td><strong>Exam Fee</strong></td>
+                    <td>Per Term</td>
+                    <td>Examination and assessment fees</td>
+                </tr>
+                <tr>
+                    <td><strong>Transport Fee</strong></td>
+                    <td>Monthly</td>
+                    <td>School bus/transport charges</td>
+                </tr>
+                <tr>
+                    <td><strong>Library Fee</strong></td>
+                    <td>Annual</td>
+                    <td>Library and book charges</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Technical Info -->
+        <div class="oe_section">
+            <h3>🔧 Technical Information</h3>
+            <table class="oe_table">
+                <tr><td><strong>Version</strong></td><td>19.0.1.0.0</td></tr>
+                <tr><td><strong>License</strong></td><td>LGPL-3</td></tr>
+                <tr><td><strong>Dependencies</strong></td><td>algorid_madrashah_student, account</td></tr>
+                <tr><td><strong>Odoo Version</strong></td><td>19.0 Community Edition</td></tr>
+            </table>
+        </div>
+
+        <!-- Company Info -->
+        <div class="oe_company">
+            <h3>Developed by</h3>
+            <h2><strong>Algorid Limited</strong></h2>
+            <p>
+                🌐 <a href="https://www.algorid.com" target="_blank">www.algorid.com</a><br>
+                📧 <a href="mailto:contact@algorid.com">contact@algorid.com</a>
+            </p>
+            <p style="margin-top: 20px; color: #666;">© 2025 - Today Algorid Limited. All Rights Reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+

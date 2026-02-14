@@ -4,7 +4,7 @@
     <menuitem id="menu_madrashah_root"
               name="Madrashah"
               sequence="100"
-              web_icon="algorid_madrashah_base,static/description/icon.png"
+              web_icon="algorid_madrashah_base,static/description/menu.png"
               groups="algorid_madrashah_base.group_madrashah_user"/>
 
     <!-- Configuration Menu -->

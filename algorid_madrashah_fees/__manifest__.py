@@ -49,7 +49,9 @@
         'wizard/fee_invoice_wizard_views.xml',
         'views/menu_views.xml',
     ],
-    'images': [],
+    'images': [
+        'static/description/banner.png'
+    ],
     'installable': True,
     'application': False,
     'auto_install': False,
