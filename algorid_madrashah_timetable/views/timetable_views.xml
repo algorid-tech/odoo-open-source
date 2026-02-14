@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Timetable Tree View -->
+    <record id="view_timetable_tree" model="ir.ui.view">
+        <field name="name">algorid.timetable.tree</field>
+        <field name="model">algorid.timetable</field>
+        <field name="arch" type="xml">
+            <list string="Timetables">
+                <field name="name"/>
+                <field name="academic_year_id"/>
+                <field name="class_id"/>
+                <field name="section_id"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Timetable Form View -->
+    <record id="view_timetable_form" model="ir.ui.view">
+        <field name="name">algorid.timetable.form</field>
+        <field name="model">algorid.timetable</field>
+        <field name="arch" type="xml">
+            <form string="Timetable">
+                <header>
+                    <button name="action_check_conflicts" string="Check Conflicts" type="object" class="btn-secondary"/>
+                    <button name="action_activate" string="Activate" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_archive" string="Archive" type="object" invisible="state != 'active'"/>
+                    <button name="action_draft" string="Reset to Draft" type="object" invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="academic_year_id" readonly="state != 'draft'"/>
+                            <field name="class_id" readonly="state != 'draft'"/>
+                            <field name="section_id" readonly="state != 'draft'"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Timetable" name="timetable">
+                            <field name="line_ids" readonly="state == 'archived'">
+                                <list editable="bottom">
+                                    <field name="day_of_week"/>
+                                    <field name="period_id"/>
+                                    <field name="start_time" widget="float_time"/>
+                                    <field name="end_time" widget="float_time"/>
+                                    <field name="subject_id"/>
+                                    <field name="teacher_id"/>
+                                    <field name="room_no"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Timetable Search View -->
+    <record id="view_timetable_search" model="ir.ui.view">
+        <field name="name">algorid.timetable.search</field>
+        <field name="model">algorid.timetable</field>
+        <field name="arch" type="xml">
+            <search string="Search Timetables">
+                <field name="class_id"/>
+                <field name="section_id"/>
+                <field name="academic_year_id"/>
+                <filter string="Active" name="active_state" domain="[('state', '=', 'active')]"/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Timetable Action -->
+    <record id="action_timetable" model="ir.actions.act_window">
+        <field name="name">Timetables</field>
+        <field name="res_model">algorid.timetable</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_timetable_search"/>
+        <field name="context">{'search_default_active_state': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first timetable
+            </p>
+            <p>
+                Define weekly timetables for each class with subject and teacher assignments.
+            </p>
+        </field>
+    </record>
+</odoo>
+

@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_student_admin,algorid.student.admin,model_algorid_student,algorid_madrashah_base.group_madrashah_admin,1,1,1,1
+access_student_teacher,algorid.student.teacher,model_algorid_student,algorid_madrashah_base.group_madrashah_teacher,1,1,0,0
+access_student_user,algorid.student.user,model_algorid_student,algorid_madrashah_base.group_madrashah_user,1,0,0,0
+access_guardian_admin,algorid.guardian.admin,model_algorid_guardian,algorid_madrashah_base.group_madrashah_admin,1,1,1,1
+access_guardian_teacher,algorid.guardian.teacher,model_algorid_guardian,algorid_madrashah_base.group_madrashah_teacher,1,1,0,0
+access_guardian_user,algorid.guardian.user,model_algorid_guardian,algorid_madrashah_base.group_madrashah_user,1,0,0,0
+access_student_tag_admin,algorid.student.tag.admin,model_algorid_student_tag,algorid_madrashah_base.group_madrashah_admin,1,1,1,1
+access_student_tag_user,algorid.student.tag.user,model_algorid_student_tag,algorid_madrashah_base.group_madrashah_user,1,0,0,0
+access_student_document_admin,algorid.student.document.admin,model_algorid_student_document,algorid_madrashah_base.group_madrashah_admin,1,1,1,1
+access_student_document_teacher,algorid.student.document.teacher,model_algorid_student_document,algorid_madrashah_base.group_madrashah_teacher,1,1,1,0
+access_student_document_user,algorid.student.document.user,model_algorid_student_document,algorid_madrashah_base.group_madrashah_user,1,0,0,0

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Module Category -->
+        <record id="module_category_madrashah" model="ir.module.category">
+            <field name="name">Madrashah Management</field>
+            <field name="description">Madrashah Management System</field>
+            <field name="sequence">100</field>
+        </record>
+
+        <!-- Security Groups -->
+        <record id="group_madrashah_user" model="res.groups">
+            <field name="name">Madrashah / User</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_madrashah_teacher" model="res.groups">
+            <field name="name">Madrashah / Teacher</field>
+            <field name="implied_ids" eval="[(4, ref('group_madrashah_user'))]"/>
+        </record>
+
+        <record id="group_madrashah_accountant" model="res.groups">
+            <field name="name">Madrashah / Accountant</field>
+            <field name="implied_ids" eval="[(4, ref('group_madrashah_user'))]"/>
+        </record>
+
+        <record id="group_madrashah_admin" model="res.groups">
+            <field name="name">Madrashah / Administrator</field>
+            <field name="implied_ids" eval="[(4, ref('group_madrashah_teacher')), (4, ref('group_madrashah_accountant'))]"/>
+        </record>
+
+        <record id="group_madrashah_parent" model="res.groups">
+            <field name="name">Madrashah / Parent</field>
+        </record>
+
+        <record id="group_madrashah_student" model="res.groups">
+            <field name="name">Madrashah / Student</field>
+        </record>
+    </data>
+</odoo>

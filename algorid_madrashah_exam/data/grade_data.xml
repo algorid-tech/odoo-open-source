@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="grade_a_plus" model="algorid.grade.config">
+            <field name="grade">A+</field>
+            <field name="grade_bn">এ+</field>
+            <field name="min_percentage">80</field>
+            <field name="max_percentage">100</field>
+            <field name="grade_point">5.0</field>
+            <field name="min_gpa">4.5</field>
+            <field name="max_gpa">5.0</field>
+            <field name="description">Outstanding</field>
+            <field name="description_bn">অসাধারণ</field>
+        </record>
+
+        <record id="grade_a" model="algorid.grade.config">
+            <field name="grade">A</field>
+            <field name="grade_bn">এ</field>
+            <field name="min_percentage">70</field>
+            <field name="max_percentage">79</field>
+            <field name="grade_point">4.0</field>
+            <field name="min_gpa">4.0</field>
+            <field name="max_gpa">4.49</field>
+            <field name="description">Excellent</field>
+            <field name="description_bn">চমৎকার</field>
+        </record>
+
+        <record id="grade_a_minus" model="algorid.grade.config">
+            <field name="grade">A-</field>
+            <field name="grade_bn">এ-</field>
+            <field name="min_percentage">60</field>
+            <field name="max_percentage">69</field>
+            <field name="grade_point">3.5</field>
+            <field name="min_gpa">3.5</field>
+            <field name="max_gpa">3.99</field>
+            <field name="description">Very Good</field>
+            <field name="description_bn">অতি ভালো</field>
+        </record>
+
+        <record id="grade_b" model="algorid.grade.config">
+            <field name="grade">B</field>
+            <field name="grade_bn">বি</field>
+            <field name="min_percentage">50</field>
+            <field name="max_percentage">59</field>
+            <field name="grade_point">3.0</field>
+            <field name="min_gpa">3.0</field>
+            <field name="max_gpa">3.49</field>
+            <field name="description">Good</field>
+            <field name="description_bn">ভালো</field>
+        </record>
+
+        <record id="grade_c" model="algorid.grade.config">
+            <field name="grade">C</field>
+            <field name="grade_bn">সি</field>
+            <field name="min_percentage">40</field>
+            <field name="max_percentage">49</field>
+            <field name="grade_point">2.0</field>
+            <field name="min_gpa">2.0</field>
+            <field name="max_gpa">2.99</field>
+            <field name="description">Satisfactory</field>
+            <field name="description_bn">সন্তোষজনক</field>
+        </record>
+
+        <record id="grade_d" model="algorid.grade.config">
+            <field name="grade">D</field>
+            <field name="grade_bn">ডি</field>
+            <field name="min_percentage">33</field>
+            <field name="max_percentage">39</field>
+            <field name="grade_point">1.0</field>
+            <field name="min_gpa">1.0</field>
+            <field name="max_gpa">1.99</field>
+            <field name="description">Pass</field>
+            <field name="description_bn">পাস</field>
+        </record>
+
+        <record id="grade_f" model="algorid.grade.config">
+            <field name="grade">F</field>
+            <field name="grade_bn">এফ</field>
+            <field name="min_percentage">0</field>
+            <field name="max_percentage">32</field>
+            <field name="grade_point">0.0</field>
+            <field name="min_gpa">0.0</field>
+            <field name="max_gpa">0.99</field>
+            <field name="description">Fail</field>
+            <field name="description_bn">ফেল</field>
+        </record>
+    </data>
+</odoo>
+

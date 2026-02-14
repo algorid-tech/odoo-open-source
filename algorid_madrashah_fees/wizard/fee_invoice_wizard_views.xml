@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Fee Invoice Generation Wizard Form -->
+    <record id="view_fee_invoice_wizard_form" model="ir.ui.view">
+        <field name="name">algorid.fee.invoice.wizard.form</field>
+        <field name="model">algorid.fee.invoice.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate Fees">
+                <group>
+                    <group>
+                        <field name="academic_year_id"/>
+                        <field name="class_id"/>
+                        <field name="section_id"/>
+                    </group>
+                    <group>
+                        <field name="period_month"/>
+                        <field name="period_year"/>
+                        <field name="due_date"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="fee_type_ids" widget="many2many_tags"/>
+                </group>
+                <group>
+                    <field name="student_ids" widget="many2many_tags"/>
+                </group>
+                <footer>
+                    <button name="action_generate_fees" string="Generate Fees" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Fee Invoice Wizard Action -->
+    <record id="action_fee_invoice_wizard" model="ir.actions.act_window">
+        <field name="name">Generate Fees</field>
+        <field name="res_model">algorid.fee.invoice.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Fee Payment Wizard Form -->
+    <record id="view_fee_payment_wizard_form" model="ir.ui.view">
+        <field name="name">algorid.fee.payment.wizard.form</field>
+        <field name="model">algorid.fee.payment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Register Payment">
+                <group>
+                    <group>
+                        <field name="student_fee_id" readonly="1"/>
+                        <field name="due_amount"/>
+                    </group>
+                    <group>
+                        <field name="amount"/>
+                        <field name="payment_date"/>
+                        <field name="payment_method"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="reference"/>
+                    <field name="notes"/>
+                </group>
+                <footer>
+                    <button name="action_register_payment" string="Register Payment" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
+

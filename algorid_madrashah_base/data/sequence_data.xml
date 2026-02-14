@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_academic_year" model="ir.sequence">
+        <field name="name">Academic Year Sequence</field>
+        <field name="code">algorid.academic.year</field>
+        <field name="prefix">AY/</field>
+        <field name="padding">4</field>
+    </record>
+</odoo>

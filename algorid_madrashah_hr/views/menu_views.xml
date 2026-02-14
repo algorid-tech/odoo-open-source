@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Staff Menu -->
+    <menuitem id="menu_madrashah_staff"
+              name="Staff"
+              parent="algorid_madrashah_base.menu_madrashah_root"
+              sequence="20"/>
+
+    <menuitem id="menu_teacher"
+              name="Teachers"
+              parent="menu_madrashah_staff"
+              action="action_teacher"
+              sequence="10"/>
+
+    <menuitem id="menu_teacher_schedule"
+              name="Teacher Schedules"
+              parent="menu_madrashah_staff"
+              action="action_teacher_schedule"
+              sequence="20"/>
+</odoo>
+

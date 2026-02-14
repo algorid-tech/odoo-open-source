@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Exam Menu -->
+    <menuitem id="menu_madrashah_exam"
+              name="Exams"
+              parent="algorid_madrashah_base.menu_madrashah_root"
+              sequence="50"/>
+
+    <menuitem id="menu_exam"
+              name="Exams"
+              parent="menu_madrashah_exam"
+              action="action_exam"
+              sequence="10"/>
+
+    <menuitem id="menu_exam_result"
+              name="Results"
+              parent="menu_madrashah_exam"
+              action="action_exam_result"
+              sequence="20"/>
+
+    <menuitem id="menu_marks_entry"
+              name="Marks Entry"
+              parent="menu_madrashah_exam"
+              action="action_marks_entry_wizard"
+              sequence="30"/>
+
+    <!-- Configuration -->
+    <menuitem id="menu_exam_config"
+              name="Exams"
+              parent="algorid_madrashah_base.menu_madrashah_configuration"
+              sequence="40"/>
+
+    <menuitem id="menu_grade_config"
+              name="Grade Configuration"
+              parent="menu_exam_config"
+              action="action_grade_config"
+              sequence="10"/>
+</odoo>
+

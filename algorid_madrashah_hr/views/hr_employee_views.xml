@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Employee Form for Teachers -->
+    <record id="view_employee_form_inherit_madrashah" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.madrashah</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="%(action_teacher_schedule)d"
+                        type="action"
+                        class="oe_stat_button"
+                        icon="fa-calendar"
+                        invisible="not is_teacher"
+                        context="{'default_teacher_id': id}">
+                    <span class="o_stat_text">Schedule</span>
+                </button>
+            </xpath>
+            <xpath expr="//group[@name='identification_group']" position="after">
+                <group name="teacher_info" string="Teacher Information" invisible="not is_teacher">
+                    <group>
+                        <field name="teacher_id"/>
+                        <field name="name_bn"/>
+                        <field name="date_of_joining"/>
+                        <field name="total_experience_years"/>
+                    </group>
+                    <group>
+                        <field name="highest_qualification"/>
+                        <field name="specialization"/>
+                        <field name="religion"/>
+                        <field name="blood_group"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Teaching" name="teaching" invisible="not is_teacher">
+                    <group>
+                        <group string="Subjects">
+                            <field name="subject_ids" widget="many2many_tags" nolabel="1"/>
+                        </group>
+                        <group string="Classes">
+                            <field name="class_ids" widget="many2many_tags" nolabel="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Class Teacher Of">
+                            <field name="section_ids" widget="many2many_tags" nolabel="1"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Qualifications" name="qualifications" invisible="not is_teacher">
+                    <field name="qualification_ids">
+                        <list editable="bottom">
+                            <field name="name"/>
+                            <field name="institution"/>
+                            <field name="board_university"/>
+                            <field name="year"/>
+                            <field name="result"/>
+                            <field name="subject"/>
+                            <field name="certificate" filename="certificate_name"/>
+                            <field name="certificate_name" column_invisible="1"/>
+                        </list>
+                    </field>
+                </page>
+                <page string="Schedule" name="schedule" invisible="not is_teacher">
+                    <field name="schedule_ids">
+                        <list>
+                            <field name="day_of_week"/>
+                            <field name="start_time" widget="float_time"/>
+                            <field name="end_time" widget="float_time"/>
+                            <field name="class_id"/>
+                            <field name="section_id"/>
+                            <field name="subject_id"/>
+                            <field name="room_no"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='department_id']" position="before">
+                <field name="is_teacher"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Teacher Tree View -->
+    <record id="view_teacher_tree" model="ir.ui.view">
+        <field name="name">hr.employee.teacher.tree</field>
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <list string="Teachers">
+                <field name="teacher_id"/>
+                <field name="name"/>
+                <field name="name_bn"/>
+                <field name="job_title"/>
+                <field name="highest_qualification"/>
+                <field name="subject_ids" widget="many2many_tags"/>
+                <field name="class_ids" widget="many2many_tags"/>
+                <field name="work_phone"/>
+                <field name="work_email"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Teacher Kanban View -->
+    <record id="view_teacher_kanban" model="ir.ui.view">
+        <field name="name">hr.employee.teacher.kanban</field>
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <kanban class="o_hr_employee_kanban">
+                <field name="name"/>
+                <field name="teacher_id"/>
+                <field name="job_title"/>
+                <field name="image_128"/>
+                <templates>
+                    <t t-name="card">
+                        <aside>
+                            <field name="image_128" widget="image" options="{'preview_image': 'image_128'}"/>
+                        </aside>
+                        <main>
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <field name="teacher_id"/>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="job_title"/>
+                                </div>
+                            </div>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Teacher Search View -->
+    <record id="view_teacher_search" model="ir.ui.view">
+        <field name="name">hr.employee.teacher.search</field>
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <search string="Search Teachers">
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="job_id"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Teacher Action -->
+    <record id="action_teacher" model="ir.actions.act_window">
+        <field name="name">Teachers</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'kanban', 'view_id': ref('view_teacher_kanban')}),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_teacher_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('hr.view_employee_form')})]"/>
+        <field name="search_view_id" ref="view_teacher_search"/>
+        <field name="domain">[('is_teacher', '=', True)]</field>
+        <field name="context">{'default_is_teacher': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add your first teacher
+            </p>
+            <p>
+                Manage teacher profiles, qualifications, and class assignments.
+            </p>
+        </field>
+    </record>
+</odoo>
+

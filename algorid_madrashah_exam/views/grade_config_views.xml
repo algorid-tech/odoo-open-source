@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Grade Config Tree View -->
+    <record id="view_grade_config_tree" model="ir.ui.view">
+        <field name="name">algorid.grade.config.tree</field>
+        <field name="model">algorid.grade.config</field>
+        <field name="arch" type="xml">
+            <list string="Grade Configuration" editable="bottom">
+                <field name="grade"/>
+                <field name="grade_bn"/>
+                <field name="min_percentage"/>
+                <field name="max_percentage"/>
+                <field name="grade_point"/>
+                <field name="min_gpa"/>
+                <field name="max_gpa"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Grade Config Form View -->
+    <record id="view_grade_config_form" model="ir.ui.view">
+        <field name="name">algorid.grade.config.form</field>
+        <field name="model">algorid.grade.config</field>
+        <field name="arch" type="xml">
+            <form string="Grade Configuration">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="grade"/>
+                            <field name="grade_bn"/>
+                            <field name="grade_point"/>
+                        </group>
+                        <group>
+                            <field name="min_percentage"/>
+                            <field name="max_percentage"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="min_gpa"/>
+                            <field name="max_gpa"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                            <field name="description_bn"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Grade Config Action -->
+    <record id="action_grade_config" model="ir.actions.act_window">
+        <field name="name">Grade Configuration</field>
+        <field name="res_model">algorid.grade.config</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Configure grading system
+            </p>
+        </field>
+    </record>
+</odoo>
+

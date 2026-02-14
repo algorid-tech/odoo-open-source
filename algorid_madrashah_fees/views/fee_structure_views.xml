@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Fee Structure Tree View -->
+    <record id="view_fee_structure_tree" model="ir.ui.view">
+        <field name="name">algorid.fee.structure.tree</field>
+        <field name="model">algorid.fee.structure</field>
+        <field name="arch" type="xml">
+            <list string="Fee Structures">
+                <field name="academic_year_id"/>
+                <field name="class_id"/>
+                <field name="monthly_amount"/>
+                <field name="total_amount"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Fee Structure Form View -->
+    <record id="view_fee_structure_form" model="ir.ui.view">
+        <field name="name">algorid.fee.structure.form</field>
+        <field name="model">algorid.fee.structure</field>
+        <field name="arch" type="xml">
+            <form string="Fee Structure">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="academic_year_id"/>
+                            <field name="class_id"/>
+                        </group>
+                        <group>
+                            <field name="monthly_amount"/>
+                            <field name="total_amount"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Fee Lines" name="lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="fee_type_id"/>
+                                    <field name="amount"/>
+                                    <field name="due_day"/>
+                                    <field name="is_mandatory"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Fee Structure Action -->
+    <record id="action_fee_structure" model="ir.actions.act_window">
+        <field name="name">Fee Structures</field>
+        <field name="res_model">algorid.fee.structure</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first fee structure
+            </p>
+            <p>
+                Define fee structures for each class and academic year.
+            </p>
+        </field>
+    </record>
+</odoo>
+

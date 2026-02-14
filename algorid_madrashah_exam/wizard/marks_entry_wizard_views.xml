@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Marks Entry Wizard Form -->
+    <record id="view_marks_entry_wizard_form" model="ir.ui.view">
+        <field name="name">algorid.marks.entry.wizard.form</field>
+        <field name="model">algorid.marks.entry.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Marks Entry">
+                <group>
+                    <group>
+                        <field name="exam_id"/>
+                        <field name="class_id"/>
+                        <field name="section_id"/>
+                    </group>
+                    <group>
+                        <field name="subject_id"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Students" name="students">
+                        <field name="line_ids">
+                            <list editable="bottom">
+                                <field name="roll_no" readonly="1"/>
+                                <field name="student_id" readonly="1"/>
+                                <field name="marks_obtained"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="action_save_marks" string="Save Marks" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Marks Entry Wizard Action -->
+    <record id="action_marks_entry_wizard" model="ir.actions.act_window">
+        <field name="name">Marks Entry</field>
+        <field name="res_model">algorid.marks.entry.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
+

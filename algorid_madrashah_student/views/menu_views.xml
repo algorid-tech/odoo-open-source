@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Student Menu -->
+    <menuitem id="menu_madrashah_student"
+              name="Students"
+              parent="algorid_madrashah_base.menu_madrashah_root"
+              sequence="10"/>
+
+    <menuitem id="menu_student"
+              name="All Students"
+              parent="menu_madrashah_student"
+              action="action_student"
+              sequence="10"/>
+
+    <menuitem id="menu_guardian"
+              name="Guardians"
+              parent="menu_madrashah_student"
+              action="action_guardian"
+              sequence="20"/>
+
+    <menuitem id="menu_student_document"
+              name="Documents"
+              parent="menu_madrashah_student"
+              action="action_student_document"
+              sequence="30"/>
+
+    <!-- Configuration -->
+    <menuitem id="menu_student_config"
+              name="Student"
+              parent="algorid_madrashah_base.menu_madrashah_configuration"
+              sequence="20"/>
+
+    <menuitem id="menu_student_tag"
+              name="Student Tags"
+              parent="menu_student_config"
+              action="action_student_tag"
+              sequence="10"/>
+</odoo>
+

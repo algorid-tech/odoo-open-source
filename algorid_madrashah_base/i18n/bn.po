@@ -1,0 +1,337 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* algorid_madrashah_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-01 00:00+0000\n"
+"PO-Revision-Date: 2026-01-01 00:00+0000\n"
+"Last-Translator: Algorid Limited\n"
+"Language-Team: Bengali\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: bn\n"
+
+#. module: algorid_madrashah_base
+msgid "Academic Year"
+msgstr "শিক্ষাবর্ষ"
+
+#. module: algorid_madrashah_base
+msgid "Academic Years"
+msgstr "শিক্ষাবর্ষসমূহ"
+
+#. module: algorid_madrashah_base
+msgid "Class"
+msgstr "শ্রেণী"
+
+#. module: algorid_madrashah_base
+msgid "Classes"
+msgstr "শ্রেণীসমূহ"
+
+#. module: algorid_madrashah_base
+msgid "Section"
+msgstr "শাখা"
+
+#. module: algorid_madrashah_base
+msgid "Sections"
+msgstr "শাখাসমূহ"
+
+#. module: algorid_madrashah_base
+msgid "Subject"
+msgstr "বিষয়"
+
+#. module: algorid_madrashah_base
+msgid "Subjects"
+msgstr "বিষয়সমূহ"
+
+#. module: algorid_madrashah_base
+msgid "Student"
+msgstr "ছাত্র/ছাত্রী"
+
+#. module: algorid_madrashah_base
+msgid "Students"
+msgstr "ছাত্র/ছাত্রীগণ"
+
+#. module: algorid_madrashah_base
+msgid "Teacher"
+msgstr "শিক্ষক"
+
+#. module: algorid_madrashah_base
+msgid "Teachers"
+msgstr "শিক্ষকবৃন্দ"
+
+#. module: algorid_madrashah_base
+msgid "Attendance"
+msgstr "উপস্থিতি"
+
+#. module: algorid_madrashah_base
+msgid "Fees"
+msgstr "ফি"
+
+#. module: algorid_madrashah_base
+msgid "Exam"
+msgstr "পরীক্ষা"
+
+#. module: algorid_madrashah_base
+msgid "Exams"
+msgstr "পরীক্ষাসমূহ"
+
+#. module: algorid_madrashah_base
+msgid "Result"
+msgstr "ফলাফল"
+
+#. module: algorid_madrashah_base
+msgid "Results"
+msgstr "ফলাফলসমূহ"
+
+#. module: algorid_madrashah_base
+msgid "Timetable"
+msgstr "সময়সূচী"
+
+#. module: algorid_madrashah_base
+msgid "Configuration"
+msgstr "কনফিগারেশন"
+
+#. module: algorid_madrashah_base
+msgid "Settings"
+msgstr "সেটিংস"
+
+#. module: algorid_madrashah_base
+msgid "Active"
+msgstr "সক্রিয়"
+
+#. module: algorid_madrashah_base
+msgid "Name"
+msgstr "নাম"
+
+#. module: algorid_madrashah_base
+msgid "Code"
+msgstr "কোড"
+
+#. module: algorid_madrashah_base
+msgid "Start Date"
+msgstr "শুরুর তারিখ"
+
+#. module: algorid_madrashah_base
+msgid "End Date"
+msgstr "শেষের তারিখ"
+
+#. module: algorid_madrashah_base
+msgid "Current Academic Year"
+msgstr "বর্তমান শিক্ষাবর্ষ"
+
+#. module: algorid_madrashah_base
+msgid "Theory"
+msgstr "তত্ত্বীয়"
+
+#. module: algorid_madrashah_base
+msgid "Practical"
+msgstr "ব্যবহারিক"
+
+#. module: algorid_madrashah_base
+msgid "Combined"
+msgstr "সম্মিলিত"
+
+#. module: algorid_madrashah_base
+msgid "Credit Hours"
+msgstr "ক্রেডিট ঘন্টা"
+
+#. module: algorid_madrashah_base
+msgid "Weekly Hours"
+msgstr "সাপ্তাহিক ঘন্টা"
+
+#. module: algorid_madrashah_base
+msgid "Full Marks"
+msgstr "পূর্ণ নম্বর"
+
+#. module: algorid_madrashah_base
+msgid "Pass Marks"
+msgstr "পাস নম্বর"
+
+#. module: algorid_madrashah_base
+msgid "Male"
+msgstr "পুরুষ"
+
+#. module: algorid_madrashah_base
+msgid "Female"
+msgstr "মহিলা"
+
+#. module: algorid_madrashah_base
+msgid "Present"
+msgstr "উপস্থিত"
+
+#. module: algorid_madrashah_base
+msgid "Absent"
+msgstr "অনুপস্থিত"
+
+#. module: algorid_madrashah_base
+msgid "Late"
+msgstr "বিলম্বিত"
+
+#. module: algorid_madrashah_base
+msgid "Draft"
+msgstr "খসড়া"
+
+#. module: algorid_madrashah_base
+msgid "Confirmed"
+msgstr "নিশ্চিত"
+
+#. module: algorid_madrashah_base
+msgid "Published"
+msgstr "প্রকাশিত"
+
+#. module: algorid_madrashah_base
+msgid "Cancelled"
+msgstr "বাতিল"
+
+#. module: algorid_madrashah_base
+msgid "Paid"
+msgstr "পরিশোধিত"
+
+#. module: algorid_madrashah_base
+msgid "Pending"
+msgstr "বকেয়া"
+
+#. module: algorid_madrashah_base
+msgid "Grade"
+msgstr "গ্রেড"
+
+#. module: algorid_madrashah_base
+msgid "GPA"
+msgstr "জিপিএ"
+
+#. module: algorid_madrashah_base
+msgid "Percentage"
+msgstr "শতাংশ"
+
+#. module: algorid_madrashah_base
+msgid "Report Card"
+msgstr "ফলাফল পত্র"
+
+#. module: algorid_madrashah_base
+msgid "Madrashah"
+msgstr "মাদ্রাসা"
+
+#. module: algorid_madrashah_base
+msgid "Guardian"
+msgstr "অভিভাবক"
+
+#. module: algorid_madrashah_base
+msgid "Father"
+msgstr "পিতা"
+
+#. module: algorid_madrashah_base
+msgid "Mother"
+msgstr "মাতা"
+
+#. module: algorid_madrashah_base
+msgid "Roll Number"
+msgstr "রোল নম্বর"
+
+#. module: algorid_madrashah_base
+msgid "Admission Date"
+msgstr "ভর্তির তারিখ"
+
+#. module: algorid_madrashah_base
+msgid "Date of Birth"
+msgstr "জন্ম তারিখ"
+
+#. module: algorid_madrashah_base
+msgid "Blood Group"
+msgstr "রক্তের গ্রুপ"
+
+#. module: algorid_madrashah_base
+msgid "Address"
+msgstr "ঠিকানা"
+
+#. module: algorid_madrashah_base
+msgid "Phone"
+msgstr "ফোন"
+
+#. module: algorid_madrashah_base
+msgid "Mobile"
+msgstr "মোবাইল"
+
+#. module: algorid_madrashah_base
+msgid "Email"
+msgstr "ইমেইল"
+
+#. module: algorid_madrashah_base
+msgid "Saturday"
+msgstr "শনিবার"
+
+#. module: algorid_madrashah_base
+msgid "Sunday"
+msgstr "রবিবার"
+
+#. module: algorid_madrashah_base
+msgid "Monday"
+msgstr "সোমবার"
+
+#. module: algorid_madrashah_base
+msgid "Tuesday"
+msgstr "মঙ্গলবার"
+
+#. module: algorid_madrashah_base
+msgid "Wednesday"
+msgstr "বুধবার"
+
+#. module: algorid_madrashah_base
+msgid "Thursday"
+msgstr "বৃহস্পতিবার"
+
+#. module: algorid_madrashah_base
+msgid "Friday"
+msgstr "শুক্রবার"
+
+#. module: algorid_madrashah_base
+msgid "January"
+msgstr "জানুয়ারি"
+
+#. module: algorid_madrashah_base
+msgid "February"
+msgstr "ফেব্রুয়ারি"
+
+#. module: algorid_madrashah_base
+msgid "March"
+msgstr "মার্চ"
+
+#. module: algorid_madrashah_base
+msgid "April"
+msgstr "এপ্রিল"
+
+#. module: algorid_madrashah_base
+msgid "May"
+msgstr "মে"
+
+#. module: algorid_madrashah_base
+msgid "June"
+msgstr "জুন"
+
+#. module: algorid_madrashah_base
+msgid "July"
+msgstr "জুলাই"
+
+#. module: algorid_madrashah_base
+msgid "August"
+msgstr "আগস্ট"
+
+#. module: algorid_madrashah_base
+msgid "September"
+msgstr "সেপ্টেম্বর"
+
+#. module: algorid_madrashah_base
+msgid "October"
+msgstr "অক্টোবর"
+
+#. module: algorid_madrashah_base
+msgid "November"
+msgstr "নভেম্বর"
+
+#. module: algorid_madrashah_base
+msgid "December"
+msgstr "ডিসেম্বর"
+

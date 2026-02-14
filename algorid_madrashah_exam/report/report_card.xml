@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Card Template -->
+    <template id="report_card_document">
+        <t t-call="web.external_layout">
+            <t t-set="o" t-value="doc"/>
+            <div class="page">
+                <div class="text-center mb-4">
+                    <h2>Report Card</h2>
+                    <h4><t t-esc="o.exam_id.name"/></h4>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <table class="table table-sm table-borderless">
+                            <tr>
+                                <td><strong>Student Name:</strong></td>
+                                <td><t t-esc="o.student_id.name"/></td>
+                            </tr>
+                            <tr t-if="o.student_id.name_bn">
+                                <td><strong>নাম:</strong></td>
+                                <td><t t-esc="o.student_id.name_bn"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Student ID:</strong></td>
+                                <td><t t-esc="o.student_id.student_id"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Class:</strong></td>
+                                <td><t t-esc="o.class_id.name"/> <t t-if="o.section_id">- <t t-esc="o.section_id.name"/></t></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Roll No:</strong></td>
+                                <td><t t-esc="o.roll_no"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <table class="table table-sm table-borderless">
+                            <tr>
+                                <td><strong>Academic Year:</strong></td>
+                                <td><t t-esc="o.exam_id.academic_year_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Exam Type:</strong></td>
+                                <td><t t-esc="dict(o.exam_id._fields['exam_type'].selection).get(o.exam_id.exam_type)"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <table class="table table-bordered">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>Subject</th>
+                            <th class="text-center">Full Marks</th>
+                            <th class="text-center">Pass Marks</th>
+                            <th class="text-center">Marks Obtained</th>
+                            <th class="text-center">Grade</th>
+                            <th class="text-center">Grade Point</th>
+                            <th class="text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="o.line_ids" t-as="line">
+                            <tr>
+                                <td><t t-esc="line.subject_id.name"/></td>
+                                <td class="text-center"><t t-esc="line.full_marks"/></td>
+                                <td class="text-center"><t t-esc="line.pass_marks"/></td>
+                                <td class="text-center"><t t-esc="line.marks_obtained"/></td>
+                                <td class="text-center"><t t-esc="line.grade"/></td>
+                                <td class="text-center"><t t-esc="'%.2f' % line.grade_point"/></td>
+                                <td class="text-center">
+                                    <span t-if="line.is_passed" class="text-success">Pass</span>
+                                    <span t-else="" class="text-danger">Fail</span>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot>
+                        <tr class="font-weight-bold">
+                            <td>Total</td>
+                            <td class="text-center"><t t-esc="o.total_full_marks"/></td>
+                            <td class="text-center">-</td>
+                            <td class="text-center"><t t-esc="o.total_marks"/></td>
+                            <td class="text-center" colspan="3"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <table class="table table-sm table-borderless">
+                            <tr>
+                                <td><strong>Percentage:</strong></td>
+                                <td><t t-esc="'%.2f' % o.percentage"/>%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>GPA:</strong></td>
+                                <td><t t-esc="'%.2f' % o.gpa"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Grade:</strong></td>
+                                <td><t t-esc="o.grade"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <table class="table table-sm table-borderless">
+                            <tr>
+                                <td><strong>Class Rank:</strong></td>
+                                <td><t t-esc="o.rank or '-'"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Result:</strong></td>
+                                <td>
+                                    <span t-if="o.is_passed" class="text-success font-weight-bold">PASSED</span>
+                                    <span t-else="" class="text-danger font-weight-bold">FAILED</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-4 text-center">
+                        <div style="border-top: 1px solid #000; margin-top: 50px;">
+                            Class Teacher
+                        </div>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div style="border-top: 1px solid #000; margin-top: 50px;">
+                            Guardian
+                        </div>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div style="border-top: 1px solid #000; margin-top: 50px;">
+                            Principal
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_card">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="algorid_madrashah_exam.report_card_document"/>
+            </t>
+        </t>
+    </template>
+
+    <!-- Report Action -->
+    <record id="action_report_card" model="ir.actions.report">
+        <field name="name">Report Card</field>
+        <field name="model">algorid.exam.result</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">algorid_madrashah_exam.report_card</field>
+        <field name="report_file">algorid_madrashah_exam.report_card</field>
+        <field name="print_report_name">'Report_Card_%s_%s' % (object.student_id.student_id, object.exam_id.name)</field>
+        <field name="binding_model_id" ref="model_algorid_exam_result"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+

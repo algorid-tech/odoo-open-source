@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_subject_tree" model="ir.ui.view">
+        <field name="name">algorid.subject.tree</field>
+        <field name="model">algorid.subject</field>
+        <field name="arch" type="xml">
+            <list string="Subjects" default_order="sequence">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="subject_type"/>
+                <field name="credit_hours"/>
+                <field name="full_marks"/>
+                <field name="pass_marks"/>
+                <field name="is_optional"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_subject_form" model="ir.ui.view">
+        <field name="name">algorid.subject.form</field>
+        <field name="model">algorid.subject</field>
+        <field name="arch" type="xml">
+            <form string="Subject">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Subject Name"/></h1>
+                        <field name="name_bn" placeholder="Subject Name (Bangla)"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="sequence"/>
+                            <field name="subject_type"/>
+                        </group>
+                        <group>
+                            <field name="credit_hours"/>
+                            <field name="weekly_hours"/>
+                            <field name="is_optional"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="full_marks"/>
+                            <field name="pass_marks"/>
+                        </group>
+                        <group>
+                            <field name="class_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_subject" model="ir.actions.act_window">
+        <field name="name">Subjects</field>
+        <field name="res_model">algorid.subject</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first subject</p>
+        </field>
+    </record>
+</odoo>

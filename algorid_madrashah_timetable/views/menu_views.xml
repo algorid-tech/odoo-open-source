@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Timetable Menu -->
+    <menuitem id="menu_madrashah_timetable"
+              name="Timetable"
+              parent="algorid_madrashah_base.menu_madrashah_root"
+              sequence="60"/>
+
+    <menuitem id="menu_timetable"
+              name="Class Timetables"
+              parent="menu_madrashah_timetable"
+              action="action_timetable"
+              sequence="10"/>
+
+    <!-- Configuration -->
+    <menuitem id="menu_timetable_config"
+              name="Timetable"
+              parent="algorid_madrashah_base.menu_madrashah_configuration"
+              sequence="50"/>
+
+    <menuitem id="menu_period"
+              name="Periods"
+              parent="menu_timetable_config"
+              action="action_period"
+              sequence="10"/>
+</odoo>
+
