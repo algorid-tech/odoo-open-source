@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Algorid Binary Drop Widget">
+    <meta name="keywords"
+          content="Odoo, Odoo Apps, Odoo Modules, Odoo Customization, Odoo Development, Odoo Support, Binary Widget, Drag and Drop, Drop Zone, File Upload, Attachment Upload, Free Odoo App">
+    <meta name="author" content="Algorid Limited">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Binary Drop Widget</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<main class="container">
+    <div class="row mb-5">
+        <div class="col-12 col-md-12 text-center text-md-left" style="margin-top: 40px;">
+            <center><h1><strong>Key Features of Binary Drop Widget</strong></h1></center>
+            <center><p style="font-size: 20px; color: #6c757d;">Free and open source, LGPL-3. No configuration, no extra dependency beyond Odoo Web.</p></center>
+        </div>
+    </div>
+
+    <div class="row align-items-center mb-4">
+        <div class="col-12 col-md-12">
+            <ul style="font-size: 20px;">
+                <li>This module introduces a custom binary_drop widget.</li>
+                <li>Works like the standard binary widget, but the field itself becomes a drop area.</li>
+                <li>A file dragged from the desktop and dropped on the field is uploaded straight away.</li>
+                <li>Keeps the usual Upload, Download, Edit and Clear buttons of the binary widget.</li>
+                <li>Checks dropped files against the accepted file extensions and the file size limit.</li>
+                <li>Hint texts can be changed per field through widget options.</li>
+                <li>No model, no view and no menu is added, so nothing changes until you use the widget.</li>
+                <li>Support both community and enterprise edition.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 col-md-12 text-center text-md-left" style="margin-top: 10px;">
+            <center><h1><strong>How to Use the Widget</strong></h1></center>
+        </div>
+    </div>
+    <div class="row align-items-center mb-4" style="margin-top:-25px">
+        <div class="col-12 col-md-12">
+            <ul style="font-size: 20px;">
+                <li>Install the module, then add the <code>widget="binary_drop"</code> attribute to any binary field in your XML view.</li>
+                <li>Keep the <code>filename</code> attribute as you would for the standard binary widget.</li>
+            </ul>
+            <img style="border: 2px solid black;" src="img/w1.png" alt="Widget Usage in XML" class="img-fluid"/><br/>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 col-md-12 text-center text-md-left" style="margin-top: 10px;">
+            <center><h1><strong>Empty Field</strong></h1></center>
+        </div>
+    </div>
+    <div class="row align-items-center mb-4" style="margin-top:-25px">
+        <div class="col-12 col-md-12">
+            <ul style="font-size: 20px;">
+                <li>An empty field shows the Upload your file button inside a dashed drop area, with a hint under it.</li>
+                <li>The whole area takes the dropped file, not only the button.</li>
+            </ul>
+            <img style="border: 2px solid black;" src="img/w2.png" alt="Empty Drop Area" class="img-fluid"/><br/>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 col-md-12 text-center text-md-left" style="margin-top: 10px;">
+            <center><h1><strong>Dragging a File Over the Field</strong></h1></center>
+        </div>
+    </div>
+    <div class="row align-items-center mb-4" style="margin-top:-25px">
+        <div class="col-12 col-md-12">
+            <ul style="font-size: 20px;">
+                <li>The field highlights while a file is dragged over it, so it is clear where to let go.</li>
+                <li>Release the file and it is uploaded, with its name kept on the record.</li>
+            </ul>
+            <img style="border: 2px solid black;" src="img/w3.png" alt="Drag Over State" class="img-fluid"/><br/>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 col-md-12 text-center text-md-left" style="margin-top: 10px;">
+            <center><h1><strong>File Already Uploaded</strong></h1></center>
+        </div>
+    </div>
+    <div class="row align-items-center mb-4" style="margin-top:-25px">
+        <div class="col-12 col-md-12">
+            <ul style="font-size: 20px;">
+                <li>Once a file is set, its name is shown with the Download, Edit and Clear buttons.</li>
+                <li>Dropping another file on the area replaces the current one.</li>
+                <li>On a read-only record the drop area is disabled and only the download link is shown.</li>
+            </ul>
+            <img style="border: 2px solid black;" src="img/w4.png" alt="File Uploaded" class="img-fluid"/><br/>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 col-md-12 text-center text-md-left" style="margin-top: 10px;">
+            <center><h1><strong>Accepted File Types and Hints</strong></h1></center>
+        </div>
+    </div>
+    <div class="row align-items-center mb-4" style="margin-top:-25px">
+        <div class="col-12 col-md-12">
+            <ul style="font-size: 20px;">
+                <li>Limit what the field takes: <code>options="{'accepted_file_extensions': '.pdf,.xlsx'}"</code></li>
+                <li>A dropped file of another type is refused with a message, exactly as the Upload button does.</li>
+                <li>Change the hint of an empty field: <code>options="{'drop_hint': 'or drop the signed PDF here'}"</code></li>
+                <li>Change the hint once a file is set: <code>options="{'replace_hint': 'or drop a new file to replace it'}"</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 col-md-12 text-center text-md-left" style="margin-top: 20px;">
+            <center><h1><strong>Support</strong></h1></center>
+        </div>
+    </div>
+    <div style="text-align: center; font-size: 20px; margin-top: -50px;">
+        This module is free. We also offer Odoo customization and migration services.<br/>
+        Have questions or need assistance?<br/>
+        <a style="text-align: center;" href="mailto:contact@algorid.com">
+            <i class="fa fa-envelope"></i> Contact Us: contact@algorid.com
+        </a>
+    </div>
+    <br/><br/>
+
+</main>
+</body>
+</html>
