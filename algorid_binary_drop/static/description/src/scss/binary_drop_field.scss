@@ -1,0 +1,29 @@
+/* Drop area: a button to pick a file, with the whole box accepting a drop. */
+.o_algorid_binary_drop_area {
+    border: 1px dashed var(--border-color, #dee2e6);
+    border-radius: 6px;
+    background-color: var(--o-gray-100, #f8f9fa);
+    transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+
+    &:hover {
+        border-color: var(--primary, #714B67);
+        background-color: var(--o-gray-200, #f1f2f4);
+    }
+
+    /* Empty: a roomier target, the button centred and the hint under it. */
+    &.o_algorid_binary_drop_area_empty {
+        padding: 1.5rem 1rem;
+    }
+
+    .o_algorid_binary_drop_hint {
+        font-size: 0.8125rem;
+    }
+}
+
+/* Overlay shown by useDropzone while a file is dragged over the field. */
+.o-Dropzone.o_algorid_binary_dropzone {
+    border-style: dashed;
+    border-width: 2px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+}
