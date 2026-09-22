@@ -56,8 +56,9 @@ export class BinaryDropField extends BinaryField {
     }
 
     /**
-     * The file input filters on accepted_file_extensions for us, but a dropped
-     * file never goes through the input, so it has to be checked here.
+     * The FileUploader filters on accepted_file_extensions and allowed_mime_type
+     * for us, but a dropped file never goes through it, so both have to be
+     * checked here.
      */
     isAcceptedFile(file) {
         const accepted = this.acceptedExtensions;
@@ -77,6 +78,15 @@ export class BinaryDropField extends BinaryField {
         });
     }
 
+    /**
+     * Same whitelist check as FileUploader.validFileType, applied to the drop
+     * path. Kept in sync with web/static/src/views/fields/file_handler.js.
+     */
+    isAllowedMIMEType(file) {
+        const allowed = this.props.allowedMIMETypes;
+        return !allowed || allowed.includes(file.type);
+    }
+
     async onDrop(ev) {
         if (this.props.readonly) {
             return;
@@ -87,6 +97,15 @@ export class BinaryDropField extends BinaryField {
         }
         if (!this.isAcceptedFile(file)) {
             this.notification.add(_t("This file type is not accepted here."), { type: "danger" });
+            return;
+        }
+        if (!this.isAllowedMIMEType(file)) {
+            this.notification.add(
+                _t("Oops! '%(fileName)s' didn’t upload since its format isn’t allowed.", {
+                    fileName: file.name,
+                }),
+                { type: "danger" }
+            );
             return;
         }
         if (!checkFileSize(file.size, this.notification)) {

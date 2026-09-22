@@ -14,7 +14,7 @@
     'company': 'Algorid Limited',
     'maintainer': 'Algorid Limited',
     'category': 'Tools',
-    'version': '18.0.1.0.0',
+    'version': '19.0.1.0',
     'summary': 'Extends the binary widget so a file can be dropped on the field',
     'description': """
         Provides a new field widget called 'binary_drop' that works exactly like
