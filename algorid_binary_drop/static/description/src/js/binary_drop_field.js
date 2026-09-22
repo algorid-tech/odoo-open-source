@@ -1,30 +1,31 @@
-/** @odoo-module **/
-
 import { _t } from "@web/core/l10n/translation";
 import { registry } from "@web/core/registry";
 import { useDropzone } from "@web/core/dropzone/dropzone_hook";
 import { checkFileSize } from "@web/core/utils/files";
 import { getDataURLFromFile } from "@web/core/utils/urls";
-import { BinaryField, binaryField } from "@web/views/fields/binary/binary_field";
+import { BinaryField, binaryField, binaryFieldProps } from "@web/views/fields/binary/binary_field";
 
-import { useRef } from "@odoo/owl";
+import { signal, t, useProps } from "@odoo/owl";
+
+export const binaryDropFieldProps = {
+    ...binaryFieldProps,
+    dropHint: t.string().optional(),
+    replaceHint: t.string().optional(),
+};
 
 /**
  * Binary field that also accepts a file dropped on it, on top of the regular
  * "Upload your file" button inherited from BinaryField. Everything the binary
- * widget offers — upload, download, edit, clear — is kept as it is.
+ * widget offers (upload, download, edit, clear) is kept as it is.
  */
 export class BinaryDropField extends BinaryField {
     static template = "algorid_binary_drop.BinaryDropField";
-    static props = {
-        ...BinaryField.props,
-        dropHint: { type: String, optional: true },
-        replaceHint: { type: String, optional: true },
-    };
+    props = useProps(binaryDropFieldProps);
+
+    dropZoneRef = signal.ref();
 
     setup() {
         super.setup();
-        this.dropZoneRef = useRef("dropZone");
         useDropzone(
             this.dropZoneRef,
             (ev) => this.onDrop(ev),
@@ -101,7 +102,7 @@ export class BinaryDropField extends BinaryField {
         }
         if (!this.isAllowedMIMEType(file)) {
             this.notification.add(
-                _t("Oops! '%(fileName)s' didn’t upload since its format isn’t allowed.", {
+                _t("Oops! '%(fileName)s' did not upload since its format is not allowed.", {
                     fileName: file.name,
                 }),
                 { type: "danger" }

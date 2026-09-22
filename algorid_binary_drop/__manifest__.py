@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 #################################################################
 #                                                               #
 #       Developed by Algorid                                    #
@@ -14,7 +13,7 @@
     'company': 'Algorid Limited',
     'maintainer': 'Algorid Limited',
     'category': 'Tools',
-    'version': '19.0.1.0',
+    'version': '20.0.1.0',
     'summary': 'Extends the binary widget so a file can be dropped on the field',
     'description': """
         Provides a new field widget called 'binary_drop' that works exactly like
